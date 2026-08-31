@@ -2356,15 +2356,26 @@ a:focus-visible {
   text-transform: uppercase;
 }
 
-.project-secondary-card {
+.project-secondary-card-shell {
   position: relative;
   display: flex;
   min-height: 20rem;
+  perspective: 1100px;
+  transform-style: preserve-3d;
+  will-change: transform;
+}
+
+.project-secondary-card {
+  position: relative;
+  display: flex;
+  width: 100%;
+  min-height: inherit;
   flex-direction: column;
   overflow: hidden;
   padding: 1.35rem;
   transform-origin: center;
   transform-style: preserve-3d;
+  backface-visibility: visible;
   will-change: transform;
 }
 
@@ -2376,6 +2387,19 @@ a:focus-visible {
   background: linear-gradient(135deg, rgba(59, 130, 246, 0.09), transparent 48%);
   opacity: 0;
   transition: opacity 180ms ease;
+}
+
+.project-secondary-card::after {
+  pointer-events: none;
+  content: "";
+  position: absolute;
+  inset: -1px;
+  border-radius: inherit;
+  background:
+    linear-gradient(112deg, transparent 0 34%, rgba(34, 211, 238, 0.2) 43%, rgba(217, 70, 239, 0.24) 52%, transparent 64%),
+    linear-gradient(90deg, rgba(59, 130, 246, 0.12), transparent 42%, rgba(139, 92, 246, 0.16));
+  opacity: 0.72;
+  transform: translateZ(-1px);
 }
 
 .project-secondary-card:hover::before {
@@ -2394,7 +2418,8 @@ a:focus-visible {
   flex-direction: column;
   transform-origin: center;
   transform-style: preserve-3d;
-  backface-visibility: visible;
+  backface-visibility: hidden;
+  will-change: transform;
 }
 
 .project-secondary-card__icon {

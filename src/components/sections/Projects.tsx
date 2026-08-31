@@ -51,7 +51,7 @@ function StarredProjectCard({
   onRegisterController,
   shouldReduceMotion
 }: StarredProjectCardProps) {
-  const controls = useAnimationControls();
+  const shellControls = useAnimationControls();
   const rotationY = useMotionValue(0);
   const contentRotationY = useTransform(rotationY, (latestRotation) => -latestRotation);
   const isRotatingRef = useRef(false);
@@ -65,9 +65,9 @@ function StarredProjectCard({
     onRegisterController(project.id, {
       stop: () => {
         rotationAnimationRef.current?.stop();
-        controls.stop();
+        shellControls.stop();
         rotationY.set(0);
-        controls.set({ scale: 1, y: 0 });
+        shellControls.set({ scale: 1, y: 0, rotateZ: 0 });
         isRotatingRef.current = false;
       }
     });
@@ -75,7 +75,7 @@ function StarredProjectCard({
     return () => {
       onRegisterController(project.id, null);
     };
-  }, [controls, onRegisterController, project.id, rotationY]);
+  }, [shellControls, onRegisterController, project.id, rotationY]);
 
   const handleHoverStart = async () => {
     if (shouldReduceMotion || isRotatingRef.current || !onRotationStart(project.id)) {
@@ -85,11 +85,11 @@ function StarredProjectCard({
     isRotatingRef.current = true;
 
     try {
-      controls.set({ scale: 1, y: 0 });
+      shellControls.set({ scale: 1, y: 0, rotateZ: 0 });
       rotationY.set(0);
 
       const rotationAnimation = animate(rotationY, [0, -180, -360], {
-        duration: 0.72,
+        duration: 0.62,
         ease: [0.16, 1, 0.3, 1],
         times: [0, 0.55, 1]
       });
@@ -98,11 +98,12 @@ function StarredProjectCard({
 
       await Promise.all([
         rotationAnimation,
-        controls.start({
+        shellControls.start({
           scale: [1, 0.985, 1],
           y: [0, -6, 0],
+          rotateZ: [0, -0.45, 0],
           transition: {
-            duration: 0.72,
+            duration: 0.62,
             ease: [0.16, 1, 0.3, 1],
             times: [0, 0.55, 1]
           }
@@ -110,7 +111,7 @@ function StarredProjectCard({
       ]);
 
       rotationY.set(0);
-      controls.set({ scale: 1, y: 0 });
+      shellControls.set({ scale: 1, y: 0, rotateZ: 0 });
     } finally {
       rotationAnimationRef.current = null;
       isRotatingRef.current = false;
@@ -120,78 +121,82 @@ function StarredProjectCard({
 
   return (
     <motion.article
-      className="card-v2 project-secondary-card project-secondary-card--starred"
+      className="project-secondary-card-shell"
       initial={false}
-      animate={controls}
+      animate={shellControls}
       onHoverStart={handleHoverStart}
-      style={{ rotateY: rotationY, transformPerspective: 1400 }}
     >
       <motion.div
-        className="project-secondary-card__content"
-        style={{ rotateY: contentRotationY, transformPerspective: 1400 }}
+        className="card-v2 project-secondary-card project-secondary-card--starred"
+        style={{ rotateY: rotationY }}
       >
-        <div className="flex items-start justify-between gap-4">
-          <div className="project-secondary-card__icon">
-            <Icon aria-hidden="true" />
+        <motion.div
+          className="project-secondary-card__content"
+          style={{ rotateY: contentRotationY }}
+        >
+          <div className="flex items-start justify-between gap-4">
+            <div className="project-secondary-card__icon">
+              <Icon aria-hidden="true" />
+            </div>
+
+            <div className="flex flex-col items-end gap-2">
+              <span className="project-secondary-card__number">{projectNumber}</span>
+              <span className="project-secondary-card__starred">
+                <FaStar aria-hidden="true" />
+                {starCount} {starCount === 1 ? "Star" : "Stars"}
+              </span>
+            </div>
           </div>
 
-          <div className="flex flex-col items-end gap-2">
-            <span className="project-secondary-card__number">{projectNumber}</span>
-            <span className="project-secondary-card__starred">
-              <FaStar aria-hidden="true" />
-              {starCount} {starCount === 1 ? "Star" : "Stars"}
-            </span>
+          <div className="mt-6">
+            <p className="project-secondary-card__meta">
+              {starredRepo?.fullName ?? project.repositoryName} · {project.year} · {project.status}
+            </p>
+            <h3 className="mt-3 font-display text-2xl font-black leading-tight tracking-[-0.04em] text-white">
+              {project.title}
+            </h3>
+            <p className="mt-4 text-sm leading-7 text-slate-300">
+              {project.shortDescription}
+            </p>
           </div>
-        </div>
 
-        <div className="mt-6">
-          <p className="project-secondary-card__meta">
-            {starredRepo?.fullName ?? project.repositoryName} · {project.year} · {project.status}
-          </p>
-          <h3 className="mt-3 font-display text-2xl font-black leading-tight tracking-[-0.04em] text-white">
-            {project.title}
-          </h3>
-          <p className="mt-4 text-sm leading-7 text-slate-300">
-            {project.shortDescription}
-          </p>
-        </div>
+          <div className="project-tech-list mt-5">
+            {project.technologies.slice(0, 5).map((technology) => (
+              <span key={technology} className="project-secondary-card__tech">
+                {technology}
+              </span>
+            ))}
+          </div>
 
-        <div className="project-tech-list mt-5">
-          {project.technologies.slice(0, 5).map((technology) => (
-            <span key={technology} className="project-secondary-card__tech">
-              {technology}
-            </span>
-          ))}
-        </div>
-
-        <div className="mt-auto flex flex-wrap gap-2 pt-6">
-          <a
-            href={project.githubUrl}
-            target="_blank"
-            rel="noreferrer"
-            className="project-secondary-card__link"
-            aria-label={`Open ${project.title} GitHub repository`}
-            data-cursor="link"
-          >
-            <FaGithub aria-hidden="true" />
-            GitHub
-            <FaExternalLinkAlt className="project-link__arrow text-[0.68rem]" aria-hidden="true" />
-          </a>
-
-          {project.liveUrl ? (
+          <div className="mt-auto flex flex-wrap gap-2 pt-6">
             <a
-              href={project.liveUrl}
+              href={project.githubUrl}
               target="_blank"
               rel="noreferrer"
               className="project-secondary-card__link"
-              aria-label={`Open ${project.title} live demo`}
+              aria-label={`Open ${project.title} GitHub repository`}
               data-cursor="link"
             >
-              Live Demo
+              <FaGithub aria-hidden="true" />
+              GitHub
               <FaExternalLinkAlt className="project-link__arrow text-[0.68rem]" aria-hidden="true" />
             </a>
-          ) : null}
-        </div>
+
+            {project.liveUrl ? (
+              <a
+                href={project.liveUrl}
+                target="_blank"
+                rel="noreferrer"
+                className="project-secondary-card__link"
+                aria-label={`Open ${project.title} live demo`}
+                data-cursor="link"
+              >
+                Live Demo
+                <FaExternalLinkAlt className="project-link__arrow text-[0.68rem]" aria-hidden="true" />
+              </a>
+            ) : null}
+          </div>
+        </motion.div>
       </motion.div>
     </motion.article>
   );
