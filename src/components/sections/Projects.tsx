@@ -7,25 +7,20 @@ import {
   useMotionValue,
   useTransform
 } from "framer-motion";
-import { useEffect, useRef } from "react";
-import { FaExternalLinkAlt, FaGithub, FaStar } from "react-icons/fa";
-import NeonWaveBackground from "@/components/animations/NeonWaveBackground";
+import { useEffect, useRef, useState } from "react";
+import { FaExternalLinkAlt, FaGithub } from "react-icons/fa";
 import Reveal, { revealItem } from "@/components/animations/Reveal";
 import Badge from "@/components/ui/Badge";
 import GradientText from "@/components/ui/GradientText";
 import {
-  starredGithubRepositories,
-  starredProjects,
+  mergeStarredProjects,
+  starredProjects as fallbackStarredProjects,
+  type LiveStarredRepo,
   type Project
 } from "@/data/projects";
 import useReducedMotion from "@/hooks/useReducedMotion";
 
 const fadeUp = revealItem();
-
-const getStarredRepo = (project: Project) =>
-  starredGithubRepositories.find(
-    (repo) => repo.repositoryName.toLowerCase() === project.repositoryName.toLowerCase()
-  );
 
 type ProjectRotationController = {
   stop: () => void;
@@ -57,9 +52,7 @@ function StarredProjectCard({
   const isRotatingRef = useRef(false);
   const rotationAnimationRef = useRef<ReturnType<typeof animate> | null>(null);
   const Icon = project.icon;
-  const starredRepo = getStarredRepo(project);
   const projectNumber = String(index + 1).padStart(2, "0");
-  const starCount = starredRepo?.stars ?? 1;
 
   useEffect(() => {
     onRegisterController(project.id, {
@@ -141,18 +134,11 @@ function StarredProjectCard({
 
             <div className="flex flex-col items-end gap-2">
               <span className="project-secondary-card__number">{projectNumber}</span>
-              <span className="project-secondary-card__starred">
-                <FaStar aria-hidden="true" />
-                {starCount} {starCount === 1 ? "Star" : "Stars"}
-              </span>
             </div>
           </div>
 
           <div className="mt-6">
-            <p className="project-secondary-card__meta">
-              {starredRepo?.fullName ?? project.repositoryName} · {project.year} · {project.status}
-            </p>
-            <h3 className="mt-3 font-display text-2xl font-black leading-tight tracking-[-0.04em] text-white">
+            <h3 className="font-display text-2xl font-black leading-tight tracking-[-0.04em] text-white">
               {project.title}
             </h3>
             <p className="mt-4 text-sm leading-7 text-slate-300">
@@ -206,6 +192,25 @@ export default function Projects() {
   const shouldReduceMotion = useReducedMotion();
   const rotationLockRef = useRef<string | null>(null);
   const rotationControllersRef = useRef(new Map<string, ProjectRotationController>());
+  const [starredProjects, setStarredProjects] = useState<Project[]>(fallbackStarredProjects);
+
+  useEffect(() => {
+    let cancelled = false;
+
+    fetch("/api/github-stars")
+      .then((response) => response.json())
+      .then((data: { repositories: LiveStarredRepo[] }) => {
+        if (cancelled || !data.repositories?.length) return;
+        setStarredProjects(mergeStarredProjects(data.repositories));
+      })
+      .catch(() => {
+        // Keep the static fallback list if the live fetch fails.
+      });
+
+    return () => {
+      cancelled = true;
+    };
+  }, []);
 
   const handleRotationStart = (projectId: string) => {
     const activeProjectId = rotationLockRef.current;
@@ -238,8 +243,6 @@ export default function Projects() {
 
   return (
     <section className="projects-showcase-section relative overflow-hidden">
-      <NeonWaveBackground />
-
       <div className="section-shell relative z-10">
         <Reveal stagger amount={0.2} className="mx-auto max-w-3xl text-center">
           <motion.div variants={fadeUp}>
@@ -268,7 +271,7 @@ export default function Projects() {
           </motion.p>
         </Reveal>
 
-        <div id="projects-panel" className="mt-10">
+        <div id="projects-panel" className="mx-auto mt-10 max-w-4xl">
           <motion.div
             initial={shouldReduceMotion ? false : { opacity: 0, y: 18 }}
             whileInView={{ opacity: 1, y: 0 }}

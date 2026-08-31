@@ -1,14 +1,13 @@
 "use client";
 
 import { AnimatePresence, motion } from "framer-motion";
+import Image from "next/image";
 import { useEffect, useRef, useState } from "react";
-import { FaBars, FaDownload, FaSearch, FaTimes } from "react-icons/fa";
+import { FaBars, FaDownload, FaTimes } from "react-icons/fa";
 import { navbarItems } from "@/data/navigation";
 import { publicAssetUrl } from "@/lib/publicAssetUrl";
 import { useScrollSpy } from "@/providers/ScrollSpyProvider";
 import useMagnetic from "@/hooks/useMagnetic";
-import usePlatformModifierKey from "@/hooks/usePlatformModifierKey";
-import { toggleCommandPalette } from "@/lib/commandPalette";
 
 const resumeHref = publicAssetUrl("resume/Joydip-Ghosh-Resume.pdf");
 
@@ -19,7 +18,6 @@ export default function Navbar() {
   const toggleButtonRef = useRef<HTMLButtonElement | null>(null);
   const { activeHref } = useScrollSpy();
   const { enabled: magneticEnabled, onPointerMove, onPointerLeave } = useMagnetic({ maxOffsetX: 6, maxOffsetY: 5 });
-  const modifierKey = usePlatformModifierKey();
 
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 12);
@@ -70,8 +68,15 @@ export default function Navbar() {
           className="group flex min-w-0 items-center gap-3 rounded-[12px] focus:outline-none focus-visible:ring-2 focus-visible:ring-brandBlue/50"
           aria-label="Joydip Ghosh home"
         >
-          <span className="brand-mark grid h-9 w-9 shrink-0 place-items-center rounded-[10px] text-xs font-black tracking-[-0.04em]">
-            JG
+          <span className="brand-mark grid h-9 w-9 shrink-0 place-items-center overflow-hidden rounded-[10px]">
+            <Image
+              src="/images/logo.png"
+              alt="Joydip Ghosh logo"
+              width={36}
+              height={36}
+              priority
+              className="h-full w-full object-cover"
+            />
           </span>
           <span className="hidden text-[0.78rem] font-black uppercase tracking-[0.22em] text-white sm:block">
             Joydip Ghosh
@@ -96,17 +101,6 @@ export default function Navbar() {
         </div>
 
         <div className="hidden items-center gap-2 lg:flex">
-          <button
-            type="button"
-            onClick={toggleCommandPalette}
-            className="navbar-command-hint"
-            aria-label="Open command palette"
-          >
-            <FaSearch aria-hidden="true" />
-            <kbd>{modifierKey}</kbd>
-            <kbd>K</kbd>
-          </button>
-
           <a
             href={resumeHref}
             download="Joydip-Ghosh-Resume.pdf"
@@ -165,20 +159,6 @@ export default function Navbar() {
                 );
               })}
             </div>
-
-            <button
-              type="button"
-              onClick={() => {
-                closeMobileMenu();
-                toggleCommandPalette();
-              }}
-              className="mobile-navbar-cv mobile-navbar-cv--ghost"
-            >
-              <FaSearch aria-hidden="true" />
-              Command palette
-              <kbd>{modifierKey}</kbd>
-              <kbd>K</kbd>
-            </button>
 
             <a
               href={resumeHref}

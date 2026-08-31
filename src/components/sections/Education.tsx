@@ -1,16 +1,30 @@
 "use client";
 
 import { motion } from "framer-motion";
+import type { PointerEvent } from "react";
 import { FaExternalLinkAlt, FaGraduationCap } from "react-icons/fa";
 import Reveal, { revealItem } from "@/components/animations/Reveal";
 import Badge from "@/components/ui/Badge";
 import Card from "@/components/ui/Card";
 import GradientText from "@/components/ui/GradientText";
 import { education } from "@/data/education";
+import useDesktopMotion from "@/hooks/useDesktopMotion";
+import useReducedMotion from "@/hooks/useReducedMotion";
 
 const fadeUp = revealItem();
 
 export default function Education() {
+  const shouldReduceMotion = useReducedMotion();
+  const desktopMotionEnabled = useDesktopMotion();
+
+  const handleCardPointerMove = (event: PointerEvent<HTMLElement>) => {
+    if (!desktopMotionEnabled || shouldReduceMotion) return;
+
+    const rect = event.currentTarget.getBoundingClientRect();
+    event.currentTarget.style.setProperty("--edu-spotlight-x", `${event.clientX - rect.left}px`);
+    event.currentTarget.style.setProperty("--edu-spotlight-y", `${event.clientY - rect.top}px`);
+  };
+
   return (
     <section className="education-v2 relative overflow-hidden">
       <div className="section-shell">
@@ -35,6 +49,7 @@ export default function Education() {
             <motion.div key={item.degree} variants={fadeUp}>
               <Card
                 as="article"
+                onPointerMove={handleCardPointerMove}
                 className={`education-card ${item.featured ? "education-card--featured" : ""}`}
               >
                 <div className="education-card__icon" aria-hidden="true">

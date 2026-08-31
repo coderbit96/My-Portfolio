@@ -27,6 +27,7 @@ export interface SkillItem {
   name: string;
   category: SkillCategory;
   icon: IconType;
+  color: string;
   context?: string;
 }
 

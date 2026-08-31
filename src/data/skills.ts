@@ -1,25 +1,13 @@
 import { DiJava } from "react-icons/di";
 import {
-  FaCloud,
-  FaCloudUploadAlt,
-  FaCode,
-  FaCodeBranch,
   FaCss3Alt,
-  FaDatabase,
-  FaEnvelope,
-  FaKey,
-  FaLock,
   FaSearch,
   FaServer,
-  FaShieldAlt,
-  FaTools,
-  FaUserShield,
   FaWordpressSimple
 } from "react-icons/fa";
 import {
   SiExpress,
   SiFirebase,
-  SiGit,
   SiGithub,
   SiHtml5,
   SiJavascript,
@@ -34,7 +22,6 @@ import {
   SiPostman,
   SiPython,
   SiReact,
-  SiRedux,
   SiTailwindcss,
   SiTypescript,
   SiVercel
@@ -70,49 +57,36 @@ export const skillCategories: SkillCategory[] = [
 ];
 
 export const skills: SkillItem[] = [
-  { name: "React.js", category: "Frontend", icon: SiReact, context: "Component-driven UIs" },
-  { name: "Next.js", category: "Frontend", icon: SiNextdotjs, context: "App Router foundations" },
-  { name: "TypeScript", category: "Frontend", icon: SiTypescript, context: "Typed React architecture" },
-  { name: "JavaScript", category: "Frontend", icon: SiJavascript, context: "Modern browser logic" },
-  { name: "Tailwind CSS", category: "Frontend", icon: SiTailwindcss, context: "Responsive styling systems" },
-  { name: "Redux", category: "Frontend", icon: SiRedux, context: "Predictable app state" },
-  { name: "HTML5", category: "Frontend", icon: SiHtml5, context: "Semantic structure" },
-  { name: "CSS3", category: "Frontend", icon: FaCss3Alt, context: "Responsive layouts" },
+  { name: "React.js", category: "Frontend", icon: SiReact, color: "#61DAFB", context: "Component-driven UIs" },
+  { name: "Next.js", category: "Frontend", icon: SiNextdotjs, color: "#FFFFFF", context: "App Router foundations" },
+  { name: "TypeScript", category: "Frontend", icon: SiTypescript, color: "#3178C6", context: "Typed React architecture" },
+  { name: "JavaScript", category: "Frontend", icon: SiJavascript, color: "#F7DF1E", context: "Modern browser logic" },
+  { name: "Tailwind CSS", category: "Frontend", icon: SiTailwindcss, color: "#38BDF8", context: "Responsive styling systems" },
+  { name: "HTML5", category: "Frontend", icon: SiHtml5, color: "#E34F26", context: "Semantic structure" },
+  { name: "CSS3", category: "Frontend", icon: FaCss3Alt, color: "#1572B6", context: "Responsive layouts" },
 
-  { name: "Node.js", category: "Backend", icon: SiNodedotjs, context: "Server-side JavaScript" },
-  { name: "Express.js", category: "Backend", icon: SiExpress, context: "Backend routing" },
-  { name: "REST APIs", category: "Backend", icon: FaServer, context: "Practical service endpoints" },
-  { name: "JWT", category: "Backend", icon: SiJsonwebtokens, context: "Token-based auth" },
-  { name: "RBAC", category: "Backend", icon: FaUserShield, context: "Role-based access" },
-  { name: "Nodemailer", category: "Backend", icon: FaEnvelope, context: "Transactional email flows" },
+  { name: "Node.js", category: "Backend", icon: SiNodedotjs, color: "#5FA04E", context: "Server-side JavaScript" },
+  { name: "Express.js", category: "Backend", icon: SiExpress, color: "#FFFFFF", context: "Backend routing" },
+  { name: "REST APIs", category: "Backend", icon: FaServer, color: "#22D3EE", context: "Practical service endpoints" },
+  { name: "JWT", category: "Backend", icon: SiJsonwebtokens, color: "#FB015B", context: "Token-based auth" },
 
-  { name: "MongoDB", category: "Database", icon: SiMongodb, context: "Document data models" },
-  { name: "Mongoose", category: "Database", icon: SiMongoose, context: "MongoDB schemas" },
-  { name: "Firebase", category: "Database", icon: SiFirebase, context: "App backend services" },
-  { name: "Firestore", category: "Database", icon: SiFirebase, context: "Realtime document storage" },
-  { name: "SQL", category: "Database", icon: SiMysql, context: "Relational foundations" },
+  { name: "MongoDB", category: "Database", icon: SiMongodb, color: "#47A248", context: "Document data models" },
+  { name: "Mongoose", category: "Database", icon: SiMongoose, color: "#F04D35", context: "MongoDB schemas" },
+  { name: "Firebase", category: "Database", icon: SiFirebase, color: "#FFCA28", context: "App backend services" },
+  { name: "Firestore", category: "Database", icon: SiFirebase, color: "#FFA000", context: "Realtime document storage" },
+  { name: "SQL", category: "Database", icon: SiMysql, color: "#4479A1", context: "Relational foundations" },
 
-  { name: "Vercel", category: "Cloud / Deployment", icon: SiVercel, context: "Frontend deployment" },
-  { name: "DNS", category: "Cloud / Deployment", icon: FaCloud, context: "Domain configuration" },
-  { name: "SSL", category: "Cloud / Deployment", icon: FaLock, context: "Secure delivery" },
-  { name: "CI/CD", category: "Cloud / Deployment", icon: FaCodeBranch, context: "Automated release flow" },
+  { name: "Vercel", category: "Cloud / Deployment", icon: SiVercel, color: "#FFFFFF", context: "Frontend deployment" },
 
-  { name: "Git", category: "Tools", icon: SiGit, context: "Version control" },
-  { name: "GitHub", category: "Tools", icon: SiGithub, context: "Repository workflow" },
-  { name: "Postman", category: "Tools", icon: SiPostman, context: "API testing" },
-  { name: "VS Code", category: "Tools", icon: FaCode, context: "Development workspace" },
+  { name: "GitHub", category: "Tools", icon: SiGithub, color: "#FFFFFF", context: "Repository workflow" },
+  { name: "Postman", category: "Tools", icon: SiPostman, color: "#FF6C37", context: "API testing" },
 
-  { name: "WordPress", category: "Other", icon: FaWordpressSimple, context: "CMS websites" },
-  { name: "SEO", category: "Other", icon: FaSearch, context: "Search-aware structure" },
-  { name: "PHP", category: "Other", icon: SiPhp, context: "Backend foundations" },
-  { name: "Laravel", category: "Other", icon: SiLaravel, context: "PHP framework basics" },
-  { name: "Java", category: "Other", icon: DiJava, context: "Programming fundamentals" },
-  { name: "Python", category: "Other", icon: SiPython, context: "Programming fundamentals" },
-  { name: "Authentication", category: "Other", icon: FaKey, context: "Secure user flows" },
-  { name: "Security basics", category: "Other", icon: FaShieldAlt, context: "Practical app safeguards" },
-  { name: "Optimization", category: "Other", icon: FaCloudUploadAlt, context: "Performance-minded delivery" },
-  { name: "Developer Tools", category: "Other", icon: FaTools, context: "Debugging and workflow" },
-  { name: "Data Modeling", category: "Other", icon: FaDatabase, context: "Useful schema design" }
+  { name: "WordPress", category: "Other", icon: FaWordpressSimple, color: "#21759B", context: "CMS websites" },
+  { name: "SEO", category: "Other", icon: FaSearch, color: "#22D3EE", context: "Search-aware structure" },
+  { name: "PHP", category: "Other", icon: SiPhp, color: "#777BB4", context: "Backend foundations" },
+  { name: "Laravel", category: "Other", icon: SiLaravel, color: "#FF2D20", context: "PHP framework basics" },
+  { name: "Java", category: "Other", icon: DiJava, color: "#F89820", context: "Programming fundamentals" },
+  { name: "Python", category: "Other", icon: SiPython, color: "#FFD43B", context: "Programming fundamentals" }
 ];
 
 export const techStack: TechItem[] = [

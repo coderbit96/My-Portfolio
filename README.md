@@ -15,7 +15,6 @@ Dark mode is the default. Visitors can switch to light mode, and their choice is
 - Curated project showcase with category filters and dedicated project case-study pages (`/projects/[slug]`).
 - Certificate viewer powered by PDF.js.
 - Contact form (React Hook Form + Zod validation) with client-side EmailJS delivery and clear success/error states.
-- Command palette (`Ctrl+K` / `Cmd+K`) for keyboard-driven navigation, with a matching navbar hint.
 - Optional custom cursor with contextual hover states on desktop, always falling back to the native cursor on touch, reduced motion, or failure.
 - Optional "Fun experiment" Tic-Tac-Toe game against a browser-based AI opponent; scores persist in `localStorage`.
 - Accessible keyboard controls, visible focus styles, reduced-motion support, hover effects, tilt cards, magnetic buttons, typewriter animation, and optional UI sound.
@@ -107,14 +106,14 @@ Without these values, the page still works and the form explains that EmailJS mu
 ├── src/
 │   ├── app/                          # App Router entry: layout, home page, project case studies, resume preview
 │   ├── components/
-│   │   ├── animations/                 # Reveal, TextReveal, scroll progress, aurora, cinematic scroll, hero birds, neon project wave
+│   │   ├── animations/                 # Reveal, TextReveal, scroll progress, aurora, cinematic scroll, hero birds
 │   │   ├── contact/                    # Contact form
 │   │   ├── layout/                     # Navbar, Footer, PortfolioPage composition, ObservedSection
 │   │   ├── sections/                   # Page sections (Hero, About, Skills, Projects, ...)
-│   │   └── ui/                         # Buttons, cards, badges, command palette, etc.
-│   ├── data/                         # Typed content: projects, skills, experience, education, socials, commands
-│   ├── hooks/                        # useDesktopMotion, useMagnetic, useMousePosition, useReducedMotion, usePlatformModifierKey
-│   ├── lib/                          # publicAssetUrl.ts, cn.ts, commandPalette.ts, validation/ (shared Zod schema)
+│   │   └── ui/                         # Buttons, cards, badges, etc.
+│   ├── data/                         # Typed content: projects, skills, experience, education, socials
+│   ├── hooks/                        # useDesktopMotion, useMagnetic, useMousePosition, useReducedMotion
+│   ├── lib/                          # publicAssetUrl.ts, cn.ts, validation/ (shared Zod schema)
 │   ├── providers/                    # SmoothScrollProvider, ScrollSpyProvider, AppProviders
 │   └── types/portfolio.ts
 ├── .env.example

@@ -4,7 +4,6 @@ import Image from "next/image";
 import { motion, useTransform } from "framer-motion";
 import {
   useRef,
-  useState,
   type CSSProperties,
   type PointerEvent,
   type RefObject
@@ -53,7 +52,6 @@ export default function Hero({ nextSectionRef }: HeroProps) {
   const visualY = useTransform(smoothY, [-1, 1], [-12, 12]);
   const orbitX = useTransform(smoothX, [-1, 1], [10, -10]);
   const orbitY = useTransform(smoothY, [-1, 1], [8, -8]);
-  const [spotlight, setSpotlight] = useState({ x: 50, y: 42 });
 
   const handlePointerMove = (event: PointerEvent<HTMLElement>) => {
     onPointerMove(event);
@@ -63,17 +61,19 @@ export default function Hero({ nextSectionRef }: HeroProps) {
     const x = (event.clientX - rect.left) / rect.width;
     const y = (event.clientY - rect.top) / rect.height;
 
-    setSpotlight({ x: x * 100, y: y * 100 });
+    event.currentTarget.style.setProperty("--hero-spotlight-x", `${x * 100}%`);
+    event.currentTarget.style.setProperty("--hero-spotlight-y", `${y * 100}%`);
   };
 
   const handlePointerLeave = () => {
     onPointerLeave();
-    setSpotlight({ x: 50, y: 42 });
+    heroRef.current?.style.setProperty("--hero-spotlight-x", "50%");
+    heroRef.current?.style.setProperty("--hero-spotlight-y", "42%");
   };
 
   const heroStyle = {
-    "--hero-spotlight-x": `${spotlight.x}%`,
-    "--hero-spotlight-y": `${spotlight.y}%`
+    "--hero-spotlight-x": "50%",
+    "--hero-spotlight-y": "42%"
   } as CSSProperties;
 
   return (

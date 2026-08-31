@@ -531,6 +531,10 @@ export const projects: Project[] = [
   }
 ];
 
+// Fallback snapshot used for the first paint (and if the live GitHub fetch
+// fails). Projects.tsx replaces this with the live starred list from
+// /api/github-stars once it loads, so starring/unstarring on GitHub is
+// reflected here automatically without editing this file.
 export const starredGithubRepositories = [
   { fullName: "coderbit96/ShowTime", repositoryName: "ShowTime", stars: 1 },
   { fullName: "coderbit96/Ecommerce", repositoryName: "Ecommerce", stars: 1 },
@@ -540,16 +544,56 @@ export const starredGithubRepositories = [
   { fullName: "coderbit96/coderbit96", repositoryName: "coderbit96", stars: 1 }
 ] as const;
 
-const starredGithubRepositoryNameSet = new Set(
-  starredGithubRepositories.map((repo) => repo.repositoryName.toLowerCase())
-);
-
-export const isStarredGithubProject = (project: Project) =>
-  starredGithubRepositoryNameSet.has(project.repositoryName.toLowerCase());
-
 export const featuredProjects = projects.filter((project) => project.featured);
 export const starredProjects = starredGithubRepositories
   .map((repo) =>
     projects.find((project) => project.repositoryName.toLowerCase() === repo.repositoryName.toLowerCase())
   )
   .filter((project): project is Project => Boolean(project));
+
+export interface LiveStarredRepo {
+  name: string;
+  fullName: string;
+  description: string | null;
+  homepage: string | null;
+  githubUrl: string;
+  language: string | null;
+  stars: number;
+}
+
+/** Builds a fallback card for a starred repo that has no hand-authored entry above. */
+function buildFallbackProject(repo: LiveStarredRepo): Project {
+  return {
+    id: repo.name.toLowerCase(),
+    slug: repo.name.toLowerCase(),
+    title: repo.name,
+    shortDescription: repo.description ?? `A starred public repository from ${repo.fullName}.`,
+    description: repo.description ?? `A starred public repository from ${repo.fullName}.`,
+    thumbnail: "",
+    images: [],
+    category: "Other",
+    technologies: repo.language ? [repo.language] : [],
+    features: [],
+    liveUrl: repo.homepage ?? "",
+    githubUrl: repo.githubUrl,
+    featured: false,
+    year: String(new Date().getFullYear()),
+    status: repo.homepage ? "Live" : "Repository only",
+    problem: "",
+    solution: "",
+    challenges: [],
+    repositoryName: repo.name,
+    icon: FaGithub
+  };
+}
+
+/** Merges live GitHub-starred repos with hand-authored project data, keeping GitHub as the source of truth for which repos appear. */
+export function mergeStarredProjects(liveRepos: LiveStarredRepo[]): Project[] {
+  return liveRepos.map((repo) => {
+    const knownProject = projects.find(
+      (project) => project.repositoryName.toLowerCase() === repo.name.toLowerCase()
+    );
+
+    return knownProject ?? buildFallbackProject(repo);
+  });
+}

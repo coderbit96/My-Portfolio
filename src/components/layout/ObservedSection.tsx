@@ -52,7 +52,7 @@ export default function ObservedSection({
         setShouldRender(true);
         observer.disconnect();
       },
-      { rootMargin: "1200px 0px" }
+      { rootMargin: "650px 0px" }
     );
 
     observer.observe(section);

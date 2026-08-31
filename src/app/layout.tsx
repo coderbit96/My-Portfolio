@@ -60,14 +60,25 @@ export const metadata: Metadata = {
   icons: {
     icon: [
       {
-        url: "/icons/favicon.svg",
-        type: "image/svg+xml"
+        url: "/icons/favicon-16.png",
+        sizes: "16x16",
+        type: "image/png"
+      },
+      {
+        url: "/icons/favicon-32.png",
+        sizes: "32x32",
+        type: "image/png"
+      },
+      {
+        url: "/icons/favicon-512.png",
+        sizes: "512x512",
+        type: "image/png"
       }
     ],
-    shortcut: "/icons/favicon.svg",
+    shortcut: "/icons/favicon-32.png",
     apple: [
       {
-        url: "/apple-icon",
+        url: "/images/logo-180.png",
         sizes: "180x180",
         type: "image/png"
       }
@@ -93,18 +104,30 @@ const structuredData = {
       url: siteConfig.url,
       email: `mailto:${siteConfig.email}`,
       jobTitle: "Full-Stack Developer",
+      address: {
+        "@type": "PostalAddress",
+        addressLocality: "Kolkata",
+        addressRegion: "West Bengal",
+        addressCountry: "IN"
+      },
       sameAs: [siteConfig.github, siteConfig.linkedin],
       knowsAbout: [
         "Next.js",
         "React",
         "TypeScript",
+        "JavaScript",
         "Node.js",
+        "Express.js",
         "MongoDB",
         "MERN stack",
         "REST APIs",
         "Tailwind CSS",
         "WordPress",
-        "SEO"
+        "SEO",
+        "PHP",
+        "Laravel",
+        "Java",
+        "Python"
       ]
     },
     {
