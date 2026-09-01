@@ -1087,6 +1087,11 @@ a:focus-visible {
   font-weight: 800;
 }
 
+.theme-toggle--mobile:hover,
+.theme-toggle--mobile:focus-visible {
+  transform: none;
+}
+
 .navbar-cv-link:hover,
 .navbar-cv-link:focus-visible,
 .mobile-navbar-cv:hover,
@@ -3425,7 +3430,7 @@ a.contact-details__item:focus-visible {
   gap: 0.55rem;
   border: 1px solid rgba(34, 211, 238, 0.48);
   border-radius: 999px;
-  background: rgba(13, 18, 26, 0.92);
+  background: var(--section);
   padding: 0.65rem 1rem;
   color: var(--text-primary);
   font-size: 0.84rem;
