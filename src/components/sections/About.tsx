@@ -52,7 +52,7 @@ export default function About() {
         <Reveal stagger amount={0.28} className="relative z-10">
           <motion.h2
             variants={fadeUp}
-            className="mx-auto whitespace-nowrap text-center font-display text-[clamp(0.9rem,3.15vw,3.1rem)] font-black leading-[1.02] tracking-[-0.045em] text-white"
+            className="mx-auto text-center font-display text-[clamp(1.65rem,7vw,3.1rem)] font-black leading-[1.05] tracking-[-0.045em] text-white sm:whitespace-nowrap sm:text-[clamp(0.9rem,3.15vw,3.1rem)] sm:leading-[1.02]"
           >
             <span>Passionate about building </span>
             <GradientText>Innovative solutions.</GradientText>

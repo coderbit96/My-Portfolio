@@ -80,7 +80,7 @@ export default function Footer() {
           </section>
         </div>
 
-        <div className="footer-meta flex flex-col gap-3 pt-6 text-xs font-semibold text-slate-400 sm:flex-row sm:items-center sm:justify-between">
+        <div className="footer-meta flex flex-col gap-3 pb-20 pt-6 text-xs font-semibold text-slate-400 sm:flex-row sm:items-center sm:justify-between lg:pb-0">
           <p>© {new Date().getFullYear()} Joydip Ghosh. All rights reserved.</p>
           <a
             href="#home"

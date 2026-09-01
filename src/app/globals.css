@@ -990,6 +990,23 @@ a:focus-visible {
   -webkit-backdrop-filter: blur(18px);
 }
 
+@media (max-width: 767px) {
+  .site-navbar {
+    border-color: rgba(34, 44, 58, 0.86);
+    background: rgba(13, 18, 26, 0.72);
+    box-shadow: 0 14px 38px rgba(0, 0, 0, 0.24);
+    backdrop-filter: blur(18px);
+    -webkit-backdrop-filter: blur(18px);
+  }
+
+  :root[data-theme="light"] .site-navbar {
+    border-color: var(--border) !important;
+    background: rgba(255, 255, 255, 0.8) !important;
+    box-shadow: 0 12px 40px rgba(20, 32, 51, 0.12) !important;
+    color: var(--text-primary) !important;
+  }
+}
+
 .brand-mark {
   border: 1px solid rgba(59, 130, 246, 0.48);
   background:

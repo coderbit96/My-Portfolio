@@ -201,7 +201,7 @@ export default function ContactForm() {
               animate={{ opacity: 1, y: 0, scale: 1 }}
               exit={{ opacity: 0, y: -12, scale: 0.96 }}
               transition={{ duration: 0.3, ease: [0.22, 1, 0.36, 1] }}
-              className={`dark-surface fixed right-4 top-24 z-[60] flex max-w-sm items-start gap-3 rounded-[12px] border p-4 pr-4 shadow-card backdrop-blur-xl sm:right-6 ${
+              className={`dark-surface fixed left-4 right-4 top-24 z-[60] flex items-start gap-3 rounded-[12px] border p-4 pr-4 shadow-card backdrop-blur-xl sm:left-auto sm:right-6 sm:max-w-sm ${
                 status.type === "success"
                   ? "border-mintGlow/40 bg-ink/95"
                   : "border-cyanGlow/40 bg-ink/95"

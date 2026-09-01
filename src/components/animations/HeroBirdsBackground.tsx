@@ -2,7 +2,6 @@
 
 import { useEffect, useRef, useState } from "react";
 import useReducedMotion from "@/hooks/useReducedMotion";
-import useDesktopMotion from "@/hooks/useDesktopMotion";
 
 /**
  * Vanta.js BIRDS background for the Hero section only. Renders a plain div
@@ -14,12 +13,14 @@ import useDesktopMotion from "@/hooks/useDesktopMotion";
  * and layered at z-index 0 so it never intercepts clicks/hover/scroll and
  * never sits above Hero text, images, or buttons (all of which already use
  * z-index 1+ via `.hero-v2 .section-shell`).
+ *
+ * Runs on every viewport/pointer type (touch included, via Vanta's own
+ * `touchControls`) and only skips when the user prefers reduced motion.
  */
 export default function HeroBirdsBackground() {
   const containerRef = useRef<HTMLDivElement | null>(null);
   const effectRef = useRef<{ destroy: () => void } | null>(null);
   const shouldReduceMotion = useReducedMotion();
-  const desktopMotionEnabled = useDesktopMotion();
   const [isLightTheme, setIsLightTheme] = useState(false);
 
   useEffect(() => {
@@ -34,7 +35,7 @@ export default function HeroBirdsBackground() {
   }, []);
 
   useEffect(() => {
-    if (shouldReduceMotion || !desktopMotionEnabled) return undefined;
+    if (shouldReduceMotion) return undefined;
 
     const container = containerRef.current;
     if (!container) return undefined;
@@ -87,9 +88,9 @@ export default function HeroBirdsBackground() {
       effectRef.current?.destroy();
       effectRef.current = null;
     };
-  }, [desktopMotionEnabled, isLightTheme, shouldReduceMotion]);
+  }, [isLightTheme, shouldReduceMotion]);
 
-  if (shouldReduceMotion || !desktopMotionEnabled) return null;
+  if (shouldReduceMotion) return null;
 
   return (
     <div

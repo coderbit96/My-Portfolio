@@ -95,7 +95,7 @@ export default function Navbar() {
               className="h-full w-full object-cover"
             />
           </span>
-          <span className="hidden text-[0.78rem] font-black uppercase tracking-[0.22em] text-white sm:block">
+          <span className="block truncate text-[0.68rem] font-black uppercase tracking-[0.14em] text-white sm:text-[0.78rem] sm:tracking-[0.22em]">
             Joydip Ghosh
           </span>
         </a>
