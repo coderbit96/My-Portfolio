@@ -5,16 +5,6 @@ export interface NavItem {
   href: `#${string}`;
 }
 
-export interface Metric {
-  value: string;
-  label: string;
-}
-
-export interface SkillGroup {
-  title: string;
-  skills: string[];
-}
-
 export type SkillCategory =
   | "Frontend"
   | "Backend"
@@ -52,65 +42,8 @@ export interface EducationItem {
   featured?: boolean;
 }
 
-export interface ProjectDetail {
-  title: string;
-  category: string;
-  description: string;
-  stack: string[];
-  icon: IconType;
-}
-
-export interface GitHubRepository {
-  id: number;
-  name: string;
-  description: string | null;
-  fork: boolean;
-  html_url: string;
-  homepage: string | null;
-  language: string | null;
-  topics?: string[];
-}
-
-export interface PresentedProject {
-  id: number;
-  title: string;
-  category: string;
-  description: string;
-  stack: string[];
-  icon: IconType;
-  accent: VisualAccent;
-  githubUrl: string;
-  liveUrl: string;
-}
-
-export interface VisualAccent {
-  text: string;
-  border: string;
-  bg: string;
-  glow: string;
-}
-
-export interface TechItem {
-  name: string;
-  icon: IconType;
-  color: string;
-}
-
-export interface CertificateItem {
-  title: string;
-  issuer: string;
-  date: string;
-  description: string;
-  file: string;
-}
-
 export interface SocialLink {
   label: string;
   href: string;
   icon: IconType;
-}
-
-export interface EducationDocument {
-  label: string;
-  fileName: string;
 }

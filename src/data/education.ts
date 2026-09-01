@@ -1,4 +1,4 @@
-import type { EducationDocument, EducationItem } from "@/types/portfolio";
+import type { EducationItem } from "@/types/portfolio";
 
 export const education: EducationItem[] = [
   {
@@ -23,10 +23,4 @@ export const education: EducationItem[] = [
     documentLabel: "Madhyamik Result",
     documentFileName: "Madhyamik-Reasult.pdf"
   }
-];
-
-export const educationDocuments: EducationDocument[] = [
-  { label: "Madhyamik Result", fileName: "Madhyamik-Reasult.pdf" },
-  { label: "Higher Secondary Examination Result", fileName: "Higher-Secondary-Examination-Reasult.pdf" },
-  { label: "B.Tech Result", fileName: "B-Tech-Reasult.pdf" }
 ];

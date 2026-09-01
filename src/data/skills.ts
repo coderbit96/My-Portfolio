@@ -26,35 +26,7 @@ import {
   SiTypescript,
   SiVercel
 } from "react-icons/si";
-import type { SkillCategory, SkillGroup, SkillItem, TechItem } from "@/types/portfolio";
-
-export const skillGroups: SkillGroup[] = [
-  {
-    title: "Frontend",
-    skills: ["HTML5", "CSS3", "JavaScript", "Tailwind CSS", "ReactJS"]
-  },
-  {
-    title: "Backend Knowledge",
-    skills: ["PHP", "Laravel", "Node.js", "Express.js", "MongoDB", "MySQL", "AWS"]
-  },
-  {
-    title: "Programming",
-    skills: ["Java", "Python", "Next.js"]
-  },
-  {
-    title: "CMS & Marketing",
-    skills: ["WordPress", "SEO", "Digital Marketing"]
-  }
-];
-
-export const skillCategories: SkillCategory[] = [
-  "Frontend",
-  "Backend",
-  "Database",
-  "Cloud / Deployment",
-  "Tools",
-  "Other"
-];
+import type { SkillItem } from "@/types/portfolio";
 
 export const skills: SkillItem[] = [
   { name: "React.js", category: "Frontend", icon: SiReact, color: "#61DAFB", context: "Component-driven UIs" },
@@ -87,21 +59,4 @@ export const skills: SkillItem[] = [
   { name: "Laravel", category: "Other", icon: SiLaravel, color: "#FF2D20", context: "PHP framework basics" },
   { name: "Java", category: "Other", icon: DiJava, color: "#F89820", context: "Programming fundamentals" },
   { name: "Python", category: "Other", icon: SiPython, color: "#FFD43B", context: "Programming fundamentals" }
-];
-
-export const techStack: TechItem[] = [
-  { name: "HTML5", icon: SiHtml5, color: "#22d3ee" },
-  { name: "CSS3", icon: FaCss3Alt, color: "#64748b" },
-  { name: "JavaScript", icon: SiJavascript, color: "#22d3ee" },
-  { name: "Tailwind CSS", icon: SiTailwindcss, color: "#64748b" },
-  { name: "ReactJS", icon: SiReact, color: "#22d3ee" },
-  { name: "PHP", icon: SiPhp, color: "#64748b" },
-  { name: "MongoDb", icon: SiMongodb, color: "#22d3ee" },
-  { name: "ExpressJs", icon: SiExpress, color: "#64748b" },
-  { name: "Node Js", icon: SiNodedotjs, color: "#22d3ee" },
-  { name: "Laravel", icon: SiLaravel, color: "#64748b" },
-  { name: "Java", icon: DiJava, color: "#22d3ee" },
-  { name: "Python", icon: SiPython, color: "#64748b" },
-  { name: "WordPress", icon: FaWordpressSimple, color: "#22d3ee" },
-  { name: "SEO", icon: FaSearch, color: "#64748b" }
 ];

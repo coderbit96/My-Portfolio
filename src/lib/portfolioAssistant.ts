@@ -1,7 +1,7 @@
 import { contactEmail, contactLocation } from "@/data/profile";
 import { experience } from "@/data/experience";
 import { projects } from "@/data/projects";
-import { skillGroups, skills } from "@/data/skills";
+import { skills } from "@/data/skills";
 import { socials } from "@/data/socials";
 
 const supportedTopicPattern = /\b(joydip|skill|technology|tech|experience|project|portfolio|contact|email|mern|react|next(?:\.js)?|node(?:\.js)?|express|mongo(?:db)?|backend|frontend|wordpress|seo)\b/i;
@@ -9,6 +9,18 @@ const supportedTopicPattern = /\b(joydip|skill|technology|tech|experience|projec
 export function isPortfolioAssistantQuestion(message: string) {
   return supportedTopicPattern.test(message);
 }
+
+const skillGroups = skills.reduce<{ title: string; skills: string[] }[]>((groups, skill) => {
+  const group = groups.find((entry) => entry.title === skill.category);
+
+  if (group) {
+    group.skills.push(skill.name);
+  } else {
+    groups.push({ title: skill.category, skills: [skill.name] });
+  }
+
+  return groups;
+}, []);
 
 export const portfolioKnowledge = [
   "Joydip Ghosh portfolio knowledge base. Use only these facts; do not infer missing experience.",

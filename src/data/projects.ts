@@ -15,7 +15,6 @@ import {
   FaWpforms
 } from "react-icons/fa";
 import type { IconType } from "react-icons";
-import type { VisualAccent } from "@/types/portfolio";
 
 export type ProjectCategory =
   | "All"
@@ -49,22 +48,6 @@ export interface Project {
   repositoryName: string;
   icon: IconType;
 }
-
-export const projectCategories: ProjectCategory[] = [
-  "All",
-  "Full Stack",
-  "AI",
-  "Dashboard",
-  "E-Commerce",
-  "Other"
-];
-
-export const visualAccents: VisualAccent[] = [
-  { text: "text-cyanGlow", border: "border-cyanGlow/35", bg: "bg-cyanGlow/10", glow: "rgba(34,211,238,0.32)" },
-  { text: "text-mintGlow", border: "border-mintGlow/35", bg: "bg-mintGlow/10", glow: "rgba(34,197,94,0.26)" },
-  { text: "text-goldGlow", border: "border-goldGlow/35", bg: "bg-goldGlow/10", glow: "rgba(59,130,246,0.28)" },
-  { text: "text-roseGlow", border: "border-roseGlow/35", bg: "bg-roseGlow/10", glow: "rgba(139,92,246,0.26)" }
-];
 
 export const projects: Project[] = [
   {
@@ -544,7 +527,6 @@ export const starredGithubRepositories = [
   { fullName: "coderbit96/coderbit96", repositoryName: "coderbit96", stars: 1 }
 ] as const;
 
-export const featuredProjects = projects.filter((project) => project.featured);
 export const starredProjects = starredGithubRepositories
   .map((repo) =>
     projects.find((project) => project.repositoryName.toLowerCase() === repo.repositoryName.toLowerCase())
