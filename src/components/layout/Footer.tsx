@@ -1,7 +1,8 @@
-import { FaArrowRight, FaArrowUp, FaEnvelope, FaWhatsapp } from "react-icons/fa";
+import { FaArrowUp, FaWhatsapp } from "react-icons/fa";
 import Image from "next/image";
 import { navItems } from "@/data/navigation";
 import { socials } from "@/data/socials";
+import CopyEmailButton from "@/components/ui/CopyEmailButton";
 
 export default function Footer() {
   return (
@@ -33,22 +34,17 @@ export default function Footer() {
                 Full-Stack Developer
               </span>
             </p>
-            <a
-              href="mailto:joydip.work.mail@gmail.com"
-              className="group mt-6 inline-flex items-center gap-3 rounded-full border border-cyanGlow/45 bg-cyanGlow/10 px-4 py-3 text-sm font-bold text-mintGlow transition hover:border-goldGlow hover:bg-goldGlow hover:text-ink focus:border-goldGlow focus:bg-goldGlow focus:text-ink focus:outline-none"
-            >
-              <FaEnvelope /> joydip.work.mail@gmail.com <FaArrowRight className="transition-transform group-hover:translate-x-1" />
-            </a>
+            <CopyEmailButton email="joydip.work.mail@gmail.com" />
           </section>
 
           <nav aria-label="Footer navigation">
             <p className="text-xs font-bold uppercase tracking-[0.26em] text-goldGlow">Explore</p>
-            <ul className="mt-5 grid gap-1">
+            <ul className="mt-5 flex flex-wrap gap-1">
               {navItems.map((item) => (
                 <li key={item.href}>
                   <a
                     href={item.href}
-                    className="group inline-flex min-h-10 items-center gap-2 rounded-[8px] px-3 text-sm font-semibold text-slate-300 transition hover:bg-cyanGlow/15 hover:text-goldGlow focus:bg-cyanGlow/15 focus:text-goldGlow focus:outline-none"
+                    className="group inline-flex min-h-9 items-center gap-1.5 rounded-[8px] px-2 text-xs font-semibold text-slate-300 transition hover:bg-cyanGlow/15 hover:text-goldGlow focus:bg-cyanGlow/15 focus:text-goldGlow focus:outline-none"
                   >
                     <span className="h-1.5 w-1.5 rounded-full bg-cyanGlow transition group-hover:bg-goldGlow" />
                     {item.label}
@@ -84,9 +80,12 @@ export default function Footer() {
           </section>
         </div>
 
-        <div className="flex flex-col gap-3 pt-6 text-xs font-semibold text-slate-400 sm:flex-row sm:items-center sm:justify-between">
+        <div className="footer-meta flex flex-col gap-3 pt-6 text-xs font-semibold text-slate-400 sm:flex-row sm:items-center sm:justify-between">
           <p>© {new Date().getFullYear()} Joydip Ghosh. All rights reserved.</p>
-          <a href="#home" className="inline-flex w-fit items-center gap-2 text-mintGlow transition hover:text-goldGlow focus:text-goldGlow focus:outline-none">
+          <a
+            href="#home"
+            className="inline-flex min-h-8 w-fit items-center gap-1.5 rounded-md border border-brandBlue/45 bg-brandBlue/10 px-2.5 text-xs font-bold text-accentCyan transition hover:-translate-y-0.5 hover:border-accentCyan/70 hover:bg-brandBlue/18 hover:text-primary focus-visible:-translate-y-0.5 focus-visible:border-accentCyan/70 focus-visible:text-primary focus:outline-none"
+          >
             Back to top <FaArrowUp />
           </a>
         </div>

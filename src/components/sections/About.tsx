@@ -55,7 +55,7 @@ export default function About() {
             className="mx-auto whitespace-nowrap text-center font-display text-[clamp(0.9rem,3.15vw,3.1rem)] font-black leading-[1.02] tracking-[-0.045em] text-white"
           >
             <span>Passionate about building </span>
-            <GradientText>innovative solutions.</GradientText>
+            <GradientText>Innovative solutions.</GradientText>
           </motion.h2>
 
           <motion.p

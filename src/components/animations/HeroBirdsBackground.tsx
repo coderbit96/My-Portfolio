@@ -1,7 +1,8 @@
 "use client";
 
-import { useEffect, useRef } from "react";
+import { useEffect, useRef, useState } from "react";
 import useReducedMotion from "@/hooks/useReducedMotion";
+import useDesktopMotion from "@/hooks/useDesktopMotion";
 
 /**
  * Vanta.js BIRDS background for the Hero section only. Renders a plain div
@@ -18,9 +19,22 @@ export default function HeroBirdsBackground() {
   const containerRef = useRef<HTMLDivElement | null>(null);
   const effectRef = useRef<{ destroy: () => void } | null>(null);
   const shouldReduceMotion = useReducedMotion();
+  const desktopMotionEnabled = useDesktopMotion();
+  const [isLightTheme, setIsLightTheme] = useState(false);
 
   useEffect(() => {
-    if (shouldReduceMotion) return undefined;
+    const root = document.documentElement;
+    const updateTheme = () => setIsLightTheme(root.dataset.theme === "light");
+    const observer = new MutationObserver(updateTheme);
+
+    updateTheme();
+    observer.observe(root, { attributes: true, attributeFilter: ["data-theme"] });
+
+    return () => observer.disconnect();
+  }, []);
+
+  useEffect(() => {
+    if (shouldReduceMotion || !desktopMotionEnabled) return undefined;
 
     const container = containerRef.current;
     if (!container) return undefined;
@@ -50,10 +64,10 @@ export default function HeroBirdsBackground() {
         mouseControls: true,
         touchControls: true,
         gyroControls: false,
-        backgroundColor: 0x080b10,
-        backgroundAlpha: 1,
-        color1: 0x3b82f6,
-        color2: 0x22d3ee,
+        backgroundColor: isLightTheme ? 0xf6f8fc : 0x080b10,
+        backgroundAlpha: isLightTheme ? 0 : 1,
+        color1: isLightTheme ? 0x2563eb : 0x3b82f6,
+        color2: isLightTheme ? 0x0891b2 : 0x22d3ee,
         colorMode: "lerp",
         quantity: 5,
         birdSize: 0.8,
@@ -73,9 +87,9 @@ export default function HeroBirdsBackground() {
       effectRef.current?.destroy();
       effectRef.current = null;
     };
-  }, [shouldReduceMotion]);
+  }, [desktopMotionEnabled, isLightTheme, shouldReduceMotion]);
 
-  if (shouldReduceMotion) return null;
+  if (shouldReduceMotion || !desktopMotionEnabled) return null;
 
   return (
     <div

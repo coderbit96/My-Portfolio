@@ -164,15 +164,13 @@ export default function Skills() {
                   as="article"
                   onPointerMove={handleCardPointerMove}
                   onPointerEnter={() => playSkillTune(skillIndex)}
-                  className="skill-card-v2 group mx-auto flex max-w-[6.5rem] flex-col items-center justify-center p-2 text-center"
+                  className="skill-card-v2 group mx-auto flex max-w-[5rem] items-center justify-center p-2 sm:max-w-[5.5rem]"
                   style={{ "--skill-color": skill.color } as CSSProperties}
+                  aria-label={skill.name}
                 >
                   <div className="skill-card-v2__icon">
                     <Icon aria-hidden="true" />
                   </div>
-                  <h3 className="mt-2 text-[0.6rem] font-black leading-tight text-white sm:text-[0.68rem]">
-                    {skill.name}
-                  </h3>
                 </Card>
               </motion.div>
             );

@@ -5,6 +5,7 @@ import type { RefObject } from "react";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { useLenis } from "lenis/react";
+import useDesktopMotion from "@/hooks/useDesktopMotion";
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -24,6 +25,7 @@ export default function CinematicScroll({
   const lenis = useLenis(() => {
     ScrollTrigger.update();
   });
+  const desktopMotionEnabled = useDesktopMotion();
 
   useEffect(() => {
     if (!lenis) return undefined;
@@ -34,7 +36,7 @@ export default function CinematicScroll({
 
   useEffect(() => {
     const reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)");
-    if (reduceMotion.matches) return undefined;
+    if (reduceMotion.matches || !desktopMotionEnabled) return undefined;
 
     gsap.ticker.lagSmoothing(0);
 
@@ -105,7 +107,7 @@ export default function CinematicScroll({
       window.removeEventListener("resize", refresh);
       context.revert();
     };
-  }, [heroRef, heroCopyRef, heroVisualRef, nextSectionRef]);
+  }, [desktopMotionEnabled, heroRef, heroCopyRef, heroVisualRef, nextSectionRef]);
 
   return null;
 }

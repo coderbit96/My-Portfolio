@@ -3,7 +3,7 @@
 import { AnimatePresence, motion } from "framer-motion";
 import Image from "next/image";
 import { useEffect, useRef, useState } from "react";
-import { FaBars, FaDownload, FaTimes } from "react-icons/fa";
+import { FaBars, FaDownload, FaMoon, FaSun, FaTimes } from "react-icons/fa";
 import { navbarItems } from "@/data/navigation";
 import { publicAssetUrl } from "@/lib/publicAssetUrl";
 import { useScrollSpy } from "@/providers/ScrollSpyProvider";
@@ -14,6 +14,7 @@ const resumeHref = publicAssetUrl("resume/Joydip-Ghosh-Resume.pdf");
 export default function Navbar() {
   const [open, setOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
+  const [theme, setTheme] = useState<"dark" | "light">("dark");
   const mobileMenuRef = useRef<HTMLDivElement | null>(null);
   const toggleButtonRef = useRef<HTMLButtonElement | null>(null);
   const { activeHref } = useScrollSpy();
@@ -25,6 +26,14 @@ export default function Navbar() {
     onScroll();
     window.addEventListener("scroll", onScroll, { passive: true });
     return () => window.removeEventListener("scroll", onScroll);
+  }, []);
+
+  useEffect(() => {
+    const savedTheme = window.localStorage.getItem("portfolio-theme");
+    const initialTheme = savedTheme === "light" ? "light" : "dark";
+
+    setTheme(initialTheme);
+    document.documentElement.dataset.theme = initialTheme;
   }, []);
 
   useEffect(() => {
@@ -49,6 +58,14 @@ export default function Navbar() {
   }, [open]);
 
   const closeMobileMenu = () => setOpen(false);
+  const toggleTheme = () => {
+    const nextTheme = theme === "dark" ? "light" : "dark";
+    setTheme(nextTheme);
+    document.documentElement.dataset.theme = nextTheme;
+    window.localStorage.setItem("portfolio-theme", nextTheme);
+  };
+
+  const themeToggleLabel = theme === "dark" ? "Switch to light mode" : "Switch to dark mode";
 
   return (
     <motion.header
@@ -101,6 +118,15 @@ export default function Navbar() {
         </div>
 
         <div className="hidden items-center gap-2 lg:flex">
+          <button
+            type="button"
+            className="theme-toggle"
+            onClick={toggleTheme}
+            aria-label={themeToggleLabel}
+            title={themeToggleLabel}
+          >
+            {theme === "dark" ? <FaSun aria-hidden="true" /> : <FaMoon aria-hidden="true" />}
+          </button>
           <a
             href={resumeHref}
             download="Joydip-Ghosh-Resume.pdf"
@@ -170,6 +196,15 @@ export default function Navbar() {
               <FaDownload aria-hidden="true" />
               Download CV
             </a>
+            <button
+              type="button"
+              className="theme-toggle theme-toggle--mobile"
+              onClick={toggleTheme}
+              aria-label={themeToggleLabel}
+            >
+              {theme === "dark" ? <FaSun aria-hidden="true" /> : <FaMoon aria-hidden="true" />}
+              {theme === "dark" ? "Light mode" : "Dark mode"}
+            </button>
           </motion.div>
         ) : null}
       </AnimatePresence>

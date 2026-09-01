@@ -253,22 +253,13 @@ export default function Projects() {
             variants={fadeUp}
             className="mt-5 font-display text-[clamp(2.15rem,7vw,4.75rem)] font-black leading-[1.02] tracking-[-0.055em] text-white"
           >
-            <GradientText>Selected Work</GradientText>
+            <GradientText>Turning Ideas Into Experiences</GradientText>
           </motion.h2>
 
           <motion.p variants={fadeUp} className="mx-auto mt-5 max-w-2xl text-base leading-8 text-slate-300">
-            Starred GitHub repositories from{" "}
-            <a
-              href="https://github.com/coderbit96"
-              target="_blank"
-              rel="noreferrer"
-              className="font-extrabold text-white underline decoration-brandBlue/60 underline-offset-4 transition hover:text-accentCyan"
-              data-cursor="link"
-            >
-              coderbit96
-            </a>
-            . Only starred repositories are shown here.
+            A selection of thoughtful digital experiences built with clean design and dependable engineering.
           </motion.p>
+
         </Reveal>
 
         <div id="projects-panel" className="mx-auto mt-10 max-w-4xl">

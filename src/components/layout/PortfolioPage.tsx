@@ -3,6 +3,7 @@
 import { useRef } from "react";
 import dynamic from "next/dynamic";
 import AuroraBackground from "@/components/animations/AuroraBackground";
+import PremiumLoader from "@/components/animations/PremiumLoader";
 import ScrollProgressBar from "@/components/animations/ScrollProgressBar";
 import Navbar from "@/components/layout/Navbar";
 import Footer from "@/components/layout/Footer";
@@ -26,6 +27,7 @@ export default function PortfolioPage() {
 
   return (
     <ScrollSpyProvider>
+      <PremiumLoader />
       <AuroraBackground />
       <ScrollProgressBar />
       <Navbar />

@@ -45,7 +45,7 @@ export default function Contact() {
       <div className="section-shell">
         <SectionHeading
           eyebrow="Contact"
-          title="Let's build something great."
+          title="Have an idea? Let's build it."
           description="Open to job opportunities, collaboration, freelance projects, and technical conversations — share a few details and I'll get back to you soon."
         />
         <div className="mx-auto max-w-4xl">

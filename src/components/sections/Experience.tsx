@@ -1,7 +1,7 @@
 "use client";
 
 import { motion, useScroll, useTransform } from "framer-motion";
-import { useMemo, useRef, useState } from "react";
+import { useRef, useState } from "react";
 import { FaBriefcase, FaChevronDown } from "react-icons/fa";
 import Reveal, { revealItem } from "@/components/animations/Reveal";
 import Badge from "@/components/ui/Badge";
@@ -20,11 +20,6 @@ export default function Experience() {
     offset: ["start 70%", "end 55%"]
   });
   const lineScale = useTransform(scrollYProgress, [0, 1], [0, 1]);
-
-  const roleCountLabel = useMemo(
-    () => `${experience.length} role${experience.length === 1 ? "" : "s"}`,
-    []
-  );
 
   const toggleRole = (role: string) => {
     setExpandedRoles((currentRoles) => {
@@ -58,11 +53,6 @@ export default function Experience() {
             and internship experience.
           </motion.p>
         </Reveal>
-
-        <div className="experience-timeline-header" aria-label={roleCountLabel}>
-          <span>{roleCountLabel}</span>
-          <span>Actual resume timeline</span>
-        </div>
 
         <div ref={timelineRef} className="experience-timeline">
           <div className="experience-timeline__rail" aria-hidden="true">

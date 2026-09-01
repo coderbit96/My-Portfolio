@@ -1,9 +1,11 @@
 "use client";
 
 import Image from "next/image";
-import { motion, useTransform } from "framer-motion";
+import { AnimatePresence, motion } from "framer-motion";
 import {
+  useEffect,
   useRef,
+  useState,
   type CSSProperties,
   type PointerEvent,
   type RefObject
@@ -13,7 +15,6 @@ import { SiMongodb, SiNextdotjs, SiNodedotjs, SiReact } from "react-icons/si";
 import { revealItem } from "@/components/animations/Reveal";
 import CinematicScroll from "@/components/animations/CinematicScroll";
 import HeroBirdsBackground from "@/components/animations/HeroBirdsBackground";
-import Badge from "@/components/ui/Badge";
 import Button from "@/components/ui/Button";
 import GradientText from "@/components/ui/GradientText";
 import useReducedMotion from "@/hooks/useReducedMotion";
@@ -42,16 +43,55 @@ const techCards = [
   { label: "MongoDB", icon: SiMongodb, className: "bottom-[12%] right-0 translate-x-2 sm:translate-x-8" }
 ];
 
+const heroRoles = ["Full Stack Developer", "AI Developer", "Creative Coder"];
+
+function AnimatedRole({ shouldReduceMotion }: { shouldReduceMotion: boolean }) {
+  const [roleIndex, setRoleIndex] = useState(0);
+
+  useEffect(() => {
+    if (shouldReduceMotion) return;
+
+    const intervalId = window.setInterval(() => {
+      setRoleIndex((currentIndex) => (currentIndex + 1) % heroRoles.length);
+    }, 2600);
+
+    return () => window.clearInterval(intervalId);
+  }, [shouldReduceMotion]);
+
+  const role = heroRoles[roleIndex];
+
+  return (
+    <div className="hero-role-intro">
+      <span>I&apos;m a</span>
+      <span className="hero-role-viewport" aria-hidden="true">
+        {shouldReduceMotion ? (
+          <span className="hero-role-word">{role}</span>
+        ) : (
+          <AnimatePresence mode="wait" initial={false}>
+            <motion.span
+              key={role}
+              className="hero-role-word"
+              initial={{ opacity: 0, y: "105%", filter: "blur(5px)" }}
+              animate={{ opacity: 1, y: "0%", filter: "blur(0px)" }}
+              exit={{ opacity: 0, y: "-105%", filter: "blur(5px)" }}
+              transition={{ duration: 0.38, ease: [0.22, 1, 0.36, 1] }}
+            >
+              {role}
+            </motion.span>
+          </AnimatePresence>
+        )}
+      </span>
+      <span className="sr-only">Full Stack Developer, AI Developer, and Creative Coder.</span>
+    </div>
+  );
+}
+
 export default function Hero({ nextSectionRef }: HeroProps) {
   const heroRef = useRef<HTMLElement | null>(null);
   const heroCopyRef = useRef<HTMLDivElement | null>(null);
   const heroVisualRef = useRef<HTMLDivElement | null>(null);
   const shouldReduceMotion = useReducedMotion();
-  const { x: smoothX, y: smoothY, enabled: motionEnabled, onPointerMove, onPointerLeave } = useMousePosition();
-  const visualX = useTransform(smoothX, [-1, 1], [-16, 16]);
-  const visualY = useTransform(smoothY, [-1, 1], [-12, 12]);
-  const orbitX = useTransform(smoothX, [-1, 1], [10, -10]);
-  const orbitY = useTransform(smoothY, [-1, 1], [8, -8]);
+  const { enabled: motionEnabled, onPointerMove, onPointerLeave } = useMousePosition();
 
   const handlePointerMove = (event: PointerEvent<HTMLElement>) => {
     onPointerMove(event);
@@ -94,7 +134,6 @@ export default function Hero({ nextSectionRef }: HeroProps) {
         nextSectionRef={nextSectionRef}
       />
 
-      <div className="hero-v2-grid" aria-hidden="true" />
       <div className="hero-v2-spotlight" aria-hidden="true" />
 
       <div className="section-shell grid min-h-0 items-center gap-14 py-12 lg:min-h-[calc(100svh-7rem)] lg:grid-cols-[1.02fr_0.98fr] lg:gap-16 xl:gap-20">
@@ -107,7 +146,7 @@ export default function Hero({ nextSectionRef }: HeroProps) {
           className="relative z-10 max-w-3xl"
         >
           <motion.div variants={fadeUp}>
-            <Badge>Full-Stack Developer</Badge>
+            <AnimatedRole shouldReduceMotion={shouldReduceMotion} />
           </motion.div>
 
           <motion.h1
@@ -120,7 +159,7 @@ export default function Hero({ nextSectionRef }: HeroProps) {
 
           <motion.p
             variants={fadeUp}
-            className="mt-7 max-w-2xl text-base leading-8 text-slate-300 sm:text-lg"
+            className="hero-description mt-7 max-w-2xl text-base leading-8 text-slate-300 sm:text-lg"
           >
             I design and develop modern web applications with Next.js, React,
             TypeScript, Node.js, and MongoDB — focused on clean architecture,
@@ -142,11 +181,11 @@ export default function Hero({ nextSectionRef }: HeroProps) {
             className="mt-8 flex flex-col gap-5 text-sm text-slate-300 sm:flex-row sm:items-center sm:gap-7"
           >
             <div className="inline-flex items-center gap-2 font-semibold text-slate-200">
-              <span className="h-2 w-2 rounded-full bg-success shadow-[0_0_18px_rgba(34,197,94,0.35)]" aria-hidden="true" />
+              <span className="availability-indicator h-2 w-2 rounded-full bg-success shadow-[0_0_18px_rgba(34,197,94,0.35)]" aria-hidden="true" />
               Available for opportunities
             </div>
 
-            <div className="flex flex-wrap items-center gap-3">
+            <div className="hero-social-links flex flex-wrap items-center gap-3">
               {heroSocials.map((item) => {
                 const Icon = item.icon;
 
@@ -175,26 +214,11 @@ export default function Hero({ nextSectionRef }: HeroProps) {
           initial={shouldReduceMotion ? false : { opacity: 0, y: 28, scale: 0.96 }}
           animate={{ opacity: 1, y: 0, scale: 1 }}
           transition={{ delay: 0.18, duration: 0.8, ease: [0.22, 1, 0.36, 1] }}
-          style={motionEnabled ? { x: visualX, y: visualY } : undefined}
           className="relative z-10 mx-auto grid w-full max-w-[360px] place-items-center lg:ml-auto lg:mr-0 lg:max-w-[400px]"
         >
           <motion.div
             className="hero-orbit-stage"
-            style={motionEnabled ? { x: orbitX, y: orbitY } : undefined}
           >
-            <motion.div
-              className="hero-orbit-ring hero-orbit-ring--outer"
-              animate={motionEnabled ? { rotate: 360 } : undefined}
-              transition={motionEnabled ? { duration: 56, repeat: Infinity, ease: "linear" } : undefined}
-              aria-hidden="true"
-            />
-            <motion.div
-              className="hero-orbit-ring hero-orbit-ring--inner"
-              animate={motionEnabled ? { rotate: -360 } : undefined}
-              transition={motionEnabled ? { duration: 42, repeat: Infinity, ease: "linear" } : undefined}
-              aria-hidden="true"
-            />
-
             {techCards.map((tech, index) => {
               const Icon = tech.icon;
 
@@ -202,6 +226,7 @@ export default function Hero({ nextSectionRef }: HeroProps) {
                 <motion.div
                   key={tech.label}
                   className={`hero-tech-card ${tech.className}`}
+                  aria-label={tech.label}
                   animate={motionEnabled ? { y: [0, index % 2 === 0 ? -7 : 7, 0] } : undefined}
                   transition={
                     motionEnabled
@@ -215,7 +240,6 @@ export default function Hero({ nextSectionRef }: HeroProps) {
                   }
                 >
                   <Icon aria-hidden="true" />
-                  <span>{tech.label}</span>
                 </motion.div>
               );
             })}
