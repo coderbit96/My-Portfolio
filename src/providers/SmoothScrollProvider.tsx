@@ -49,12 +49,16 @@ export default function SmoothScrollProvider({ children }: { children: ReactNode
   useEffect(() => {
     if (!preferences.mounted) return undefined;
 
-    document.documentElement.dataset.smoothScroll = shouldUseNativeScroll ? "native" : "lenis";
+    document.documentElement.dataset.smoothScroll = preferences.prefersReducedMotion
+      ? "reduced"
+      : shouldUseNativeScroll
+        ? "native"
+        : "lenis";
 
     return () => {
       delete document.documentElement.dataset.smoothScroll;
     };
-  }, [preferences.mounted, shouldUseNativeScroll]);
+  }, [preferences.mounted, preferences.prefersReducedMotion, shouldUseNativeScroll]);
 
   const lenisOptions = useMemo<LenisOptions>(
     () => ({

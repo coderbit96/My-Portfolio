@@ -114,9 +114,8 @@ export default function Hero({ nextSectionRef }: HeroProps) {
             variants={fadeUp}
             className="mt-7 max-w-4xl font-display text-[clamp(2.3rem,5.25vw,4.5rem)] font-black leading-[0.95] tracking-[-0.055em] text-white"
           >
-            <span className="inline-block whitespace-nowrap">I create modern</span>
-            <br />
-            <GradientText>web experiences.</GradientText>
+            <span className="inline-block whitespace-nowrap">I Create Modern</span>{" "}
+            <GradientText className="inline-block whitespace-nowrap">Web Experiences.</GradientText>
           </motion.h1>
 
           <motion.p
@@ -224,11 +223,13 @@ export default function Hero({ nextSectionRef }: HeroProps) {
             <div className="hero-photo-shell">
               <div className="hero-photo-frame">
                 <Image
-                  src="/images/joydip-ghosh-profile.png"
+                  src="/images/joydip-ghosh-profile.png?v=20260901"
                   alt="Joydip Ghosh"
                   width={520}
                   height={650}
                   priority
+                  quality={100}
+                  unoptimized
                   sizes="(min-width: 1024px) 420px, (min-width: 640px) 360px, 78vw"
                   className="profile-image h-full w-full object-cover object-center"
                 />

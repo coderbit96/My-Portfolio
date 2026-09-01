@@ -4,7 +4,6 @@ import { motion } from "framer-motion";
 import {
   FaCloudUploadAlt,
   FaCode,
-  FaDatabase,
   FaDownload,
   FaLayerGroup,
   FaServer
@@ -41,14 +40,6 @@ const capabilities = [
   }
 ];
 
-const codeLines = [
-  "const developer = {",
-  "  focus: 'Full-stack web apps',",
-  "  stack: ['Next.js', 'React', 'Node'],",
-  "  mindset: 'clean, scalable, useful'",
-  "};"
-];
-
 export default function About() {
   return (
     <section className="about-v2 relative overflow-hidden">
@@ -57,20 +48,19 @@ export default function About() {
           <Badge>ABOUT ME</Badge>
         </Reveal>
 
-        <div className="grid items-center gap-10 lg:grid-cols-[1.15fr_0.85fr] lg:gap-14">
+        <div className="grid items-center">
         <Reveal stagger amount={0.28} className="relative z-10">
           <motion.h2
             variants={fadeUp}
-            className="max-w-4xl font-display text-[clamp(2.1rem,4.05vw,3.25rem)] font-black leading-[1.02] tracking-[-0.045em] text-white xl:text-[clamp(2.5rem,4.45vw,4rem)]"
+            className="mx-auto whitespace-nowrap text-center font-display text-[clamp(0.9rem,3.15vw,3.1rem)] font-black leading-[1.02] tracking-[-0.045em] text-white"
           >
-            <span className="inline-block whitespace-nowrap">Passionate about building</span>
-            <br />
+            <span>Passionate about building </span>
             <GradientText>innovative solutions.</GradientText>
           </motion.h2>
 
           <motion.p
             variants={fadeUp}
-            className="mt-6 max-w-2xl text-base leading-8 text-slate-300 sm:text-lg"
+            className="mx-auto mt-6 max-w-2xl text-center text-base leading-8 text-slate-300 sm:text-lg"
           >
             I&apos;m Joydip Ghosh, a full-stack developer focused on turning clear
             ideas into responsive, maintainable web applications. My work
@@ -81,30 +71,30 @@ export default function About() {
 
           <motion.div
             variants={{ hidden: {}, visible: { transition: { staggerChildren: 0.09 } } }}
-            className="mt-8 grid gap-3 sm:grid-cols-2"
+            className="mt-8"
           >
-            {capabilities.map((capability) => {
-              const Icon = capability.icon;
+            <Card className="about-capability-card">
+              <ul className="about-capability-list">
+                {capabilities.map((capability) => {
+                  const Icon = capability.icon;
 
-              return (
-                <motion.div key={capability.title} variants={fadeUp}>
-                  <Card className="about-capability-card h-full p-4 sm:p-5">
-                    <div className="flex gap-4">
+                  return (
+                    <li key={capability.title} className="about-capability-item">
                       <span className="about-capability-icon">
                         <Icon aria-hidden="true" />
                       </span>
-                      <div>
-                        <h3 className="text-sm font-black text-white">{capability.title}</h3>
-                        <p className="mt-2 text-sm leading-6 text-slate-300">{capability.description}</p>
-                      </div>
-                    </div>
-                  </Card>
-                </motion.div>
-              );
-            })}
+                      <span className="about-capability-copy">
+                        <strong>{capability.title}</strong>
+                        <small>{capability.description}</small>
+                      </span>
+                    </li>
+                  );
+                })}
+              </ul>
+            </Card>
           </motion.div>
 
-          <motion.div variants={fadeUp} className="mt-8 flex flex-wrap gap-3">
+          <motion.div variants={fadeUp} className="mt-8 flex flex-wrap justify-center gap-3">
             <a
               href={resumeHref}
               download="Joydip-Ghosh-Resume.pdf"
@@ -126,53 +116,6 @@ export default function About() {
           </motion.div>
         </Reveal>
 
-        <Reveal amount={0.32} className="relative z-10">
-          <div className="about-workspace">
-            <div className="about-workspace__halo" aria-hidden="true" />
-
-            <div className="about-workspace__window">
-              <div className="about-workspace__topbar">
-                <span />
-                <span />
-                <span />
-              </div>
-
-              <div className="about-workspace__body">
-                <div className="about-workspace__sidebar" aria-hidden="true">
-                  <span />
-                  <span />
-                  <span />
-                  <span />
-                </div>
-
-                <div className="about-workspace__editor">
-                  {codeLines.map((line, index) => (
-                    <div key={line} className="about-code-line">
-                      <span>{String(index + 1).padStart(2, "0")}</span>
-                      <code>{line}</code>
-                    </div>
-                  ))}
-                </div>
-              </div>
-            </div>
-
-            <div className="about-workspace__panel about-workspace__panel--api">
-              <FaServer aria-hidden="true" />
-              <div>
-                <span>API</span>
-                <strong>REST ready</strong>
-              </div>
-            </div>
-
-            <div className="about-workspace__panel about-workspace__panel--db">
-              <FaDatabase aria-hidden="true" />
-              <div>
-                <span>Database</span>
-                <strong>MongoDB</strong>
-              </div>
-            </div>
-          </div>
-        </Reveal>
         </div>
       </div>
     </section>

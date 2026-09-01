@@ -76,6 +76,15 @@ NEXT_PUBLIC_EMAILJS_PUBLIC_KEY=your_public_key
 
 These are client-side EmailJS settings. Do not place private server secrets in any `NEXT_PUBLIC_` variable.
 
+The optional Portfolio Assistant works in a structured demo mode by default. To enable server-side Gemini responses, add the following server-only values to `.env`:
+
+```dotenv
+GEMINI_API_KEY=your_server_only_key
+GEMINI_MODEL=gemini-3.7-flash
+```
+
+The API key is read only by `src/app/api/portfolio-assistant/route.ts`; it is never exposed to the browser. Without a key, the assistant remains functional using the existing portfolio data.
+
 The contact form (`src/components/contact/ContactForm.tsx`) validates input with React Hook Form and a shared Zod schema (`src/lib/validation/contact.ts`), then sends the message directly from the browser using the EmailJS Browser SDK — there is no server-side API route or backend involved.
 
 The EmailJS template receives:

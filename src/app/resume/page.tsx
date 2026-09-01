@@ -26,6 +26,7 @@ export const metadata: Metadata = {
         url: "/opengraph-image",
         width: 1200,
         height: 630,
+        type: "image/png",
         alt: "Joydip Ghosh Full-Stack Developer resume"
       }
     ]
@@ -34,7 +35,14 @@ export const metadata: Metadata = {
     card: "summary_large_image",
     title: "Resume | Joydip Ghosh",
     description: "Preview and download the professional resume of Joydip Ghosh.",
-    images: ["/opengraph-image"]
+    images: [
+      {
+        url: "/opengraph-image",
+        width: 1200,
+        height: 630,
+        alt: "Joydip Ghosh Full-Stack Developer resume"
+      }
+    ]
   }
 };
 

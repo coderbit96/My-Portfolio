@@ -140,7 +140,7 @@ export default function Skills() {
               title={soundMuted ? "Unmute skill hover sounds" : "Mute skill hover sounds"}
             >
               {soundMuted ? <FaVolumeMute aria-hidden="true" /> : <FaVolumeUp aria-hidden="true" />}
-              <span>{soundMuted ? "Muted" : "Sound"}</span>
+              <span>{soundMuted ? "Sound Off" : "Sound On"}</span>
             </button>
           </motion.div>
           <motion.p variants={fadeUp} className="mx-auto mt-5 max-w-2xl text-base leading-8 text-slate-300">

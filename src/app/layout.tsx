@@ -34,7 +34,8 @@ export const metadata: Metadata = {
         url: "/opengraph-image",
         width: 1200,
         height: 630,
-        alt: "Joydip Ghosh Full-Stack Developer portfolio"
+        type: "image/png",
+        alt: "Joydip Ghosh — Full-Stack Developer"
       }
     ]
   },
@@ -42,7 +43,14 @@ export const metadata: Metadata = {
     card: "summary_large_image",
     title: siteConfig.title,
     description: siteConfig.description,
-    images: ["/opengraph-image"]
+    images: [
+      {
+        url: "/opengraph-image",
+        width: 1200,
+        height: 630,
+        alt: "Joydip Ghosh — Full-Stack Developer"
+      }
+    ]
   },
   robots: {
     index: true,

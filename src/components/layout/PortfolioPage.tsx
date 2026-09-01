@@ -1,6 +1,7 @@
 "use client";
 
 import { useRef } from "react";
+import dynamic from "next/dynamic";
 import AuroraBackground from "@/components/animations/AuroraBackground";
 import ScrollProgressBar from "@/components/animations/ScrollProgressBar";
 import Navbar from "@/components/layout/Navbar";
@@ -14,6 +15,11 @@ import Experience from "@/components/sections/Experience";
 import Education from "@/components/sections/Education";
 import Contact from "@/components/sections/Contact";
 import { ScrollSpyProvider } from "@/providers/ScrollSpyProvider";
+
+const PortfolioAssistant = dynamic(() => import("@/components/assistant/PortfolioAssistant"), {
+  ssr: false,
+  loading: () => null
+});
 
 export default function PortfolioPage() {
   const aboutSectionRef = useRef<HTMLElement | null>(null);
@@ -47,6 +53,7 @@ export default function PortfolioPage() {
         </ObservedSection>
       </main>
       <Footer />
+      <PortfolioAssistant />
     </ScrollSpyProvider>
   );
 }

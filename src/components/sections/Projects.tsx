@@ -82,7 +82,7 @@ function StarredProjectCard({
       rotationY.set(0);
 
       const rotationAnimation = animate(rotationY, [0, -180, -360], {
-        duration: 0.62,
+        duration: 0.48,
         ease: [0.16, 1, 0.3, 1],
         times: [0, 0.55, 1]
       });
@@ -96,7 +96,7 @@ function StarredProjectCard({
           y: [0, -6, 0],
           rotateZ: [0, -0.45, 0],
           transition: {
-            duration: 0.62,
+            duration: 0.48,
             ease: [0.16, 1, 0.3, 1],
             times: [0, 0.55, 1]
           }
@@ -127,17 +127,17 @@ function StarredProjectCard({
           className="project-secondary-card__content"
           style={{ rotateY: contentRotationY }}
         >
-          <div className="flex items-start justify-between gap-4">
+          <div className="relative flex items-start justify-center">
             <div className="project-secondary-card__icon">
               <Icon aria-hidden="true" />
             </div>
 
-            <div className="flex flex-col items-end gap-2">
+            <div className="absolute right-0 top-0 flex flex-col items-end gap-2">
               <span className="project-secondary-card__number">{projectNumber}</span>
             </div>
           </div>
 
-          <div className="mt-6">
+          <div className="mt-6 text-center">
             <h3 className="font-display text-2xl font-black leading-tight tracking-[-0.04em] text-white">
               {project.title}
             </h3>
@@ -146,7 +146,7 @@ function StarredProjectCard({
             </p>
           </div>
 
-          <div className="project-tech-list mt-5">
+          <div className="project-tech-list mt-5 justify-center">
             {project.technologies.slice(0, 5).map((technology) => (
               <span key={technology} className="project-secondary-card__tech">
                 {technology}
@@ -154,7 +154,7 @@ function StarredProjectCard({
             ))}
           </div>
 
-          <div className="mt-auto flex flex-wrap gap-2 pt-6">
+          <div className="mt-6 flex flex-wrap justify-center gap-2">
             <a
               href={project.githubUrl}
               target="_blank"

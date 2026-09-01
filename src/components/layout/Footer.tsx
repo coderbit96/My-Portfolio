@@ -1,4 +1,5 @@
 import { FaArrowRight, FaArrowUp, FaEnvelope, FaWhatsapp } from "react-icons/fa";
+import Image from "next/image";
 import { navItems } from "@/data/navigation";
 import { socials } from "@/data/socials";
 
@@ -12,8 +13,15 @@ export default function Footer() {
         <div className="grid gap-10 border-b border-cyanGlow/30 pb-10 lg:grid-cols-[1.25fr_0.75fr_1fr] lg:gap-14">
           <section aria-labelledby="footer-brand-title">
             <div className="flex items-center gap-4">
-              <span className="grid h-14 w-14 place-items-center rounded-[14px] border-2 border-goldGlow bg-cyanGlow text-xl font-black text-goldGlow shadow-neon">
-                JG
+              <span className="grid h-[4.25rem] w-[4.25rem] shrink-0 place-items-center overflow-hidden rounded-2xl border border-goldGlow/80 bg-ink shadow-neon">
+                <Image
+                  src="/images/logo.png"
+                  alt="Joydip Ghosh logo"
+                  width={68}
+                  height={68}
+                  quality={100}
+                  className="h-full w-full object-cover"
+                />
               </span>
               <div>
                 <p className="text-xs font-bold uppercase tracking-[0.26em] text-goldGlow">Portfolio</p>
