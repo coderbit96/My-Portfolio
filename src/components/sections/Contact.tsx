@@ -72,7 +72,7 @@ export default function Contact() {
                     key={detail.label}
                     href={detail.href}
                     target={detail.external ? "_blank" : undefined}
-                    rel={detail.external ? "noreferrer" : undefined}
+                    rel={detail.external ? "me noreferrer" : undefined}
                     className="contact-details__item"
                     data-cursor={detail.external ? "link" : undefined}
                     aria-label={detail.label}

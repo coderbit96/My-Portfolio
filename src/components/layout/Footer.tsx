@@ -66,7 +66,7 @@ export default function Footer() {
                     key={item.label}
                     href={item.href}
                     target="_blank"
-                    rel="noreferrer"
+                    rel="me noreferrer"
                     className="footer-social-link group relative grid h-11 w-11 place-items-center overflow-hidden rounded-full border border-cyanGlow/45 bg-cyanGlow/10 text-mintGlow transition duration-300 hover:-translate-y-1 hover:scale-110 hover:border-goldGlow hover:bg-goldGlow hover:text-ink focus:-translate-y-1 focus:scale-110 focus:border-goldGlow focus:bg-goldGlow focus:text-ink focus:outline-none"
                     aria-label={item.label}
                     data-cursor="link"

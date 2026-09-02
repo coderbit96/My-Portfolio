@@ -130,6 +130,12 @@ const structuredData = {
         addressCountry: "IN"
       },
       sameAs: siteConfig.socialProfiles,
+      contactPoint: {
+        "@type": "ContactPoint",
+        contactType: "professional inquiries",
+        email: siteConfig.email,
+        availableLanguage: ["en", "bn"]
+      },
       hasOccupation: {
         "@type": "Occupation",
         name: "Full Stack Developer",

@@ -194,7 +194,7 @@ export default function Hero({ nextSectionRef }: HeroProps) {
                     key={item.label}
                     href={item.href}
                     target={item.href.startsWith("mailto:") ? undefined : "_blank"}
-                    rel={item.href.startsWith("mailto:") ? undefined : "noreferrer"}
+                    rel={item.href.startsWith("mailto:") ? undefined : "me noreferrer"}
                     className="hero-social-link"
                     aria-label={item.label}
                     data-cursor="link"
