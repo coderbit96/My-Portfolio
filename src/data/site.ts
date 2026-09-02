@@ -1,7 +1,7 @@
 export const siteConfig = {
   name: "Joydip Ghosh Portfolio",
   domain: "automade.in",
-  url: "https://automade.in",
+  url: "https://www.automade.in",
   title: "Joydip Ghosh | Full Stack Developer, Web Developer & Website Developer",
   description:
     "Joydip Ghosh is a Full Stack Developer, Web Developer and Website Developer in Kolkata, India. Explore React, Next.js, MERN and custom website development projects.",
