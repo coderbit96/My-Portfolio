@@ -129,7 +129,7 @@ export default function Skills() {
             className="skills-heading-row mt-5"
           >
             <h2 className="text-balance font-display text-[clamp(2.15rem,7vw,4.75rem)] font-black leading-[1.02] tracking-[-0.055em] text-white">
-              <GradientText>Technologies I work with</GradientText>
+              <GradientText>Technologies I Work With</GradientText>
             </h2>
             <button
               type="button"

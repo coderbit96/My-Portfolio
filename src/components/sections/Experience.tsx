@@ -1,8 +1,8 @@
 "use client";
 
 import { motion, useScroll, useTransform } from "framer-motion";
-import { useRef, useState } from "react";
-import { FaBriefcase, FaChevronDown } from "react-icons/fa";
+import { useRef } from "react";
+import { FaBriefcase } from "react-icons/fa";
 import Reveal, { revealItem } from "@/components/animations/Reveal";
 import Badge from "@/components/ui/Badge";
 import GradientText from "@/components/ui/GradientText";
@@ -14,26 +14,11 @@ const fadeUp = revealItem();
 export default function Experience() {
   const timelineRef = useRef<HTMLDivElement | null>(null);
   const shouldReduceMotion = useReducedMotion();
-  const [expandedRoles, setExpandedRoles] = useState<Set<string>>(() => new Set());
   const { scrollYProgress } = useScroll({
     target: timelineRef,
     offset: ["start 70%", "end 55%"]
   });
   const lineScale = useTransform(scrollYProgress, [0, 1], [0, 1]);
-
-  const toggleRole = (role: string) => {
-    setExpandedRoles((currentRoles) => {
-      const nextRoles = new Set(currentRoles);
-
-      if (nextRoles.has(role)) {
-        nextRoles.delete(role);
-      } else {
-        nextRoles.add(role);
-      }
-
-      return nextRoles;
-    });
-  };
 
   return (
     <section className="experience-v2 relative overflow-hidden">
@@ -60,12 +45,6 @@ export default function Experience() {
           </div>
 
           {experience.map((item, index) => {
-            const isExpanded = expandedRoles.has(item.role);
-            const hasLongDetails = item.responsibilities.length > 2;
-            const visibleResponsibilities = isExpanded
-              ? item.responsibilities
-              : item.responsibilities.slice(0, 2);
-
             return (
               <motion.article
                 key={`${item.role}-${item.period}`}
@@ -101,7 +80,7 @@ export default function Experience() {
                   <p className="experience-timeline-card__description">{item.description}</p>
 
                   <ul className="experience-responsibility-list">
-                    {visibleResponsibilities.map((responsibility) => (
+                    {item.responsibilities.map((responsibility) => (
                       <li key={responsibility}>{responsibility}</li>
                     ))}
                   </ul>
@@ -113,17 +92,6 @@ export default function Experience() {
                       ))}
                     </div>
 
-                    {hasLongDetails ? (
-                      <button
-                        type="button"
-                        className="experience-details-button"
-                        aria-expanded={isExpanded}
-                        onClick={() => toggleRole(item.role)}
-                      >
-                        {isExpanded ? "Hide details" : "View details"}
-                        <FaChevronDown aria-hidden="true" />
-                      </button>
-                    ) : null}
                   </div>
                 </div>
               </motion.article>

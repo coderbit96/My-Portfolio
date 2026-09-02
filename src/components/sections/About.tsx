@@ -55,7 +55,7 @@ export default function About() {
             className="mx-auto text-center font-display text-[clamp(1.65rem,7vw,3.1rem)] font-black leading-[1.05] tracking-[-0.045em] text-white sm:whitespace-nowrap sm:text-[clamp(0.9rem,3.15vw,3.1rem)] sm:leading-[1.02]"
           >
             <span>Passionate about building </span>
-            <GradientText>Innovative solutions.</GradientText>
+            <GradientText>Innovative Solutions.</GradientText>
           </motion.h2>
 
           <motion.p

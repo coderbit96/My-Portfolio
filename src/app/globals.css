@@ -1975,38 +1975,6 @@ a:focus-visible {
   font-weight: 850;
 }
 
-.experience-details-button {
-  display: inline-flex;
-  align-items: center;
-  gap: 0.45rem;
-  border: 1px solid rgba(34, 211, 238, 0.25);
-  border-radius: var(--radius-md);
-  background: rgba(34, 211, 238, 0.08);
-  padding: 0.55rem 0.72rem;
-  color: var(--text-primary);
-  font-size: 0.78rem;
-  font-weight: 900;
-  transition:
-    border-color 180ms ease,
-    background-color 180ms ease,
-    transform 180ms ease;
-}
-
-.experience-details-button svg {
-  transition: transform 180ms ease;
-}
-
-.experience-details-button[aria-expanded="true"] svg {
-  transform: rotate(180deg);
-}
-
-.experience-details-button:hover,
-.experience-details-button:focus-visible {
-  border-color: rgba(34, 211, 238, 0.58);
-  background: rgba(34, 211, 238, 0.13);
-  transform: translateY(-1px);
-}
-
 .education-v2 {
   background:
     radial-gradient(circle at 18% 16%, rgba(34, 211, 238, 0.07), transparent 24rem),
@@ -2217,6 +2185,34 @@ a:focus-visible {
     box-shadow:
       0 0 14px rgba(34, 211, 238, 0.46),
       0 0 28px rgba(74, 222, 128, 0.3);
+  }
+}
+
+@media (min-width: 900px) {
+  .experience-timeline {
+    width: min(100%, 70rem);
+    gap: 2rem;
+  }
+
+  .experience-timeline__rail {
+    left: calc(50% - 0.5px);
+  }
+
+  .experience-timeline-item {
+    grid-template-columns: minmax(0, 1fr) 3.2rem minmax(0, 1fr);
+    gap: 1.25rem;
+  }
+
+  .experience-timeline-item__point {
+    grid-column: 2;
+  }
+
+  .experience-timeline-item:nth-of-type(odd) .experience-timeline-card {
+    grid-column: 1;
+  }
+
+  .experience-timeline-item:nth-of-type(even) .experience-timeline-card {
+    grid-column: 3;
   }
 }
 
@@ -2695,15 +2691,12 @@ a:focus-visible {
 
   .experience-timeline-card,
   .experience-timeline-card::before,
-  .experience-details-button,
   .education-card,
   .education-card__link {
     transition: none;
   }
 
   .experience-timeline-card:hover,
-  .experience-details-button:hover,
-  .experience-details-button:focus-visible,
   .education-card:hover,
   .education-card:focus-within,
   .education-card__link:hover,
@@ -3271,8 +3264,7 @@ a.contact-details__item:focus-visible {
   box-shadow: 0 3px 10px rgba(30, 41, 59, 0.06);
 }
 
-:root[data-theme="light"] .experience-timeline-card__period,
-:root[data-theme="light"] .experience-details-button {
+:root[data-theme="light"] .experience-timeline-card__period {
   border-color: rgba(59, 130, 246, 0.38);
   background: rgba(59, 130, 246, 0.1);
   color: #25467a;

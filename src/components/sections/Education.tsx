@@ -171,7 +171,7 @@ export default function Education() {
             variants={fadeUp}
             className="mt-5 text-balance font-display text-[clamp(2rem,6vw,4.1rem)] font-black leading-[1.05] tracking-[-0.055em] text-white"
           >
-            <GradientText>Education foundation</GradientText>
+            <GradientText>Education Foundation</GradientText>
           </motion.h2>
           <motion.p variants={fadeUp} className="mx-auto mt-5 max-w-2xl text-base leading-8 text-slate-300">
             Academic documents preserved from the original portfolio, kept compact
