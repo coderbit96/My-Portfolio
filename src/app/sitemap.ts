@@ -1,10 +1,11 @@
 import type { MetadataRoute } from "next";
+import { projects } from "@/data/projects";
 import { siteConfig } from "@/data/site";
 
 export default function sitemap(): MetadataRoute.Sitemap {
   const lastModified = new Date();
 
-  return [
+  const staticPages: MetadataRoute.Sitemap = [
     {
       url: siteConfig.url,
       lastModified,
@@ -18,4 +19,13 @@ export default function sitemap(): MetadataRoute.Sitemap {
       priority: 0.7
     }
   ];
+
+  const projectPages: MetadataRoute.Sitemap = projects.map((project) => ({
+    url: `${siteConfig.url}/projects/${project.slug}`,
+    lastModified,
+    changeFrequency: "monthly",
+    priority: project.featured ? 0.9 : 0.75
+  }));
+
+  return [...staticPages, ...projectPages];
 }

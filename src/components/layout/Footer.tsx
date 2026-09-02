@@ -42,7 +42,7 @@ export default function Footer() {
               {navItems.map((item) => (
                 <li key={item.href}>
                   <a
-                    href={item.href}
+                    href={`/${item.href}`}
                     className="group inline-flex min-h-9 items-center gap-1.5 rounded-[8px] px-2 text-xs font-semibold text-slate-300 transition hover:bg-cyanGlow/15 hover:text-goldGlow focus:bg-cyanGlow/15 focus:text-goldGlow focus:outline-none"
                   >
                     <span className="h-1.5 w-1.5 rounded-full bg-cyanGlow transition group-hover:bg-goldGlow" />

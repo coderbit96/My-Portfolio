@@ -8,6 +8,7 @@ import {
   useTransform
 } from "framer-motion";
 import Image from "next/image";
+import Link from "next/link";
 import { useEffect, useRef, useState } from "react";
 import { FaExternalLinkAlt, FaGithub } from "react-icons/fa";
 import Reveal, { revealItem } from "@/components/animations/Reveal";
@@ -15,6 +16,7 @@ import Badge from "@/components/ui/Badge";
 import GradientText from "@/components/ui/GradientText";
 import {
   mergeStarredProjects,
+  projects,
   starredProjects as fallbackStarredProjects,
   type LiveStarredRepo,
   type Project
@@ -23,6 +25,7 @@ import useReducedMotion from "@/hooks/useReducedMotion";
 
 const fadeUp = revealItem();
 const projectImageVersion = "20260902-2";
+const knownProjectSlugs = new Set(projects.map((project) => project.slug));
 
 type ProjectRotationController = {
   stop: () => void;
@@ -132,7 +135,6 @@ function StarredProjectCard({
                 alt=""
                 aria-hidden="true"
                 fill
-                unoptimized
                 sizes="(min-width: 1024px) 20rem, (min-width: 640px) 45vw, 100vw"
                 className="project-secondary-card__image-background"
               />
@@ -140,7 +142,6 @@ function StarredProjectCard({
                 src={`${project.thumbnail}?v=${projectImageVersion}`}
                 alt={`${project.title} project preview`}
                 fill
-                unoptimized
                 sizes="(min-width: 1024px) 20rem, (min-width: 640px) 45vw, 100vw"
                 className="project-secondary-card__image"
               />
@@ -151,7 +152,15 @@ function StarredProjectCard({
 
           <div className="mt-6 text-center">
             <h3 className="font-display text-2xl font-black leading-tight tracking-[-0.04em] text-white">
-              {project.title}
+              {knownProjectSlugs.has(project.slug) ? (
+                <Link
+                  href={`/projects/${project.slug}`}
+                  className="text-inherit no-underline"
+                  aria-label={`Read the ${project.title} project details`}
+                >
+                  {project.title}
+                </Link>
+              ) : project.title}
             </h3>
             <p className="mt-4 text-sm leading-7 text-slate-300">
               {project.shortDescription}

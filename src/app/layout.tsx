@@ -4,7 +4,9 @@ import type { ReactNode } from "react";
 import "lenis/dist/lenis.css";
 import "./globals.css";
 import AppProviders from "@/providers/AppProviders";
+import Analytics from "@/components/seo/Analytics";
 import { siteConfig } from "@/data/site";
+import { serializeJsonLd } from "@/lib/structuredData";
 
 export const metadata: Metadata = {
   metadataBase: new URL(siteConfig.url),
@@ -65,6 +67,12 @@ export const metadata: Metadata = {
       "max-video-preview": -1
     }
   },
+  verification: {
+    google: process.env.NEXT_PUBLIC_GOOGLE_SITE_VERIFICATION,
+    other: process.env.NEXT_PUBLIC_BING_SITE_VERIFICATION
+      ? { "msvalidate.01": process.env.NEXT_PUBLIC_BING_SITE_VERIFICATION }
+      : undefined
+  },
   icons: {
     icon: [
       {
@@ -111,14 +119,26 @@ const structuredData = {
       name: siteConfig.author,
       url: siteConfig.url,
       email: `mailto:${siteConfig.email}`,
-      jobTitle: "Full-Stack Developer",
+      image: `${siteConfig.url}/images/joydip-ghosh-profile.png`,
+      description:
+        "Joydip Ghosh is a Full Stack Developer, Web Developer and Website Developer based in Kolkata, India.",
+      jobTitle: "Full Stack Developer and Website Developer",
       address: {
         "@type": "PostalAddress",
         addressLocality: "Kolkata",
         addressRegion: "West Bengal",
         addressCountry: "IN"
       },
-      sameAs: [siteConfig.github, siteConfig.linkedin],
+      sameAs: siteConfig.socialProfiles,
+      hasOccupation: {
+        "@type": "Occupation",
+        name: "Full Stack Developer",
+        occupationLocation: {
+          "@type": "City",
+          name: "Kolkata, India"
+        },
+        skills: "Next.js, React, TypeScript, Node.js, MongoDB, MERN stack, website development"
+      },
       knowsAbout: [
         "Next.js",
         "React",
@@ -148,6 +168,37 @@ const structuredData = {
       publisher: {
         "@id": `${siteConfig.url}/#person`
       }
+    },
+    {
+      "@type": "ProfilePage",
+      "@id": `${siteConfig.url}/#profile`,
+      url: siteConfig.url,
+      name: "Joydip Ghosh | Full Stack Developer",
+      mainEntity: {
+        "@id": `${siteConfig.url}/#person`
+      },
+      isPartOf: {
+        "@id": `${siteConfig.url}/#website`
+      }
+    },
+    {
+      "@type": "ProfessionalService",
+      "@id": `${siteConfig.url}/#services`,
+      name: "Joydip Ghosh Web Development Services",
+      url: siteConfig.url,
+      provider: {
+        "@id": `${siteConfig.url}/#person`
+      },
+      areaServed: [
+        { "@type": "City", name: "Kolkata" },
+        { "@type": "Country", name: "India" }
+      ],
+      serviceType: [
+        "Full Stack Development",
+        "Website Development",
+        "Web Development",
+        "React and Next.js Development"
+      ]
     }
   ]
 };
@@ -160,8 +211,9 @@ export default function RootLayout({ children }: { children: ReactNode }) {
           id="portfolio-json-ld"
           type="application/ld+json"
           strategy="beforeInteractive"
-          dangerouslySetInnerHTML={{ __html: JSON.stringify(structuredData) }}
+          dangerouslySetInnerHTML={{ __html: serializeJsonLd(structuredData) }}
         />
+        <Analytics />
         <AppProviders>{children}</AppProviders>
       </body>
     </html>

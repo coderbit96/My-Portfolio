@@ -1306,6 +1306,20 @@ a:focus-visible {
   letter-spacing: 0.04em;
   text-transform: uppercase;
   white-space: nowrap;
+  animation: hero-role-glow 1.8s ease-in-out infinite;
+}
+
+@keyframes hero-role-glow {
+  0%,
+  100% {
+    text-shadow: 0 0 7px rgba(34, 211, 238, 0.38);
+  }
+
+  50% {
+    text-shadow:
+      0 0 11px rgba(34, 211, 238, 0.7),
+      0 0 22px rgba(59, 130, 246, 0.38);
+  }
 }
 
 .hero-social-link {
@@ -2495,6 +2509,157 @@ a:focus-visible {
   font-size: 0.78rem;
 }
 
+.project-detail-page {
+  min-height: 100vh;
+  background:
+    radial-gradient(circle at 16% 8%, rgba(59, 130, 246, 0.12), transparent 30rem),
+    radial-gradient(circle at 82% 18%, rgba(34, 211, 238, 0.08), transparent 28rem),
+    var(--background);
+}
+
+.project-detail-page .section-shell {
+  padding-top: clamp(6rem, 11vw, 8rem);
+}
+
+.project-detail-page__breadcrumb {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.45rem;
+  margin-bottom: 1.4rem;
+  color: var(--text-muted);
+  font-size: 0.78rem;
+  font-weight: 750;
+}
+
+.project-detail-page__breadcrumb a {
+  color: var(--text-secondary);
+  transition: color 180ms ease;
+}
+
+.project-detail-page__breadcrumb a:hover,
+.project-detail-page__breadcrumb a:focus-visible {
+  color: var(--accent-cyan);
+}
+
+.project-detail-page__header {
+  display: grid;
+  gap: 1.5rem;
+  align-items: end;
+  margin-top: 2rem;
+}
+
+.project-detail-page__header h1 {
+  margin-top: 0.75rem;
+  color: var(--text-primary);
+  font-family: var(--font-display);
+  font-size: clamp(2.4rem, 7vw, 5.5rem);
+  font-weight: 950;
+  letter-spacing: -0.065em;
+  line-height: 0.95;
+}
+
+.project-detail-page__header p:not(.case-study-kicker) {
+  max-width: 46rem;
+  margin-top: 1rem;
+  color: var(--text-secondary);
+  font-size: 1rem;
+  line-height: 1.8;
+}
+
+.project-detail-page__actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.8rem;
+}
+
+.project-detail-page__image {
+  position: relative;
+  overflow: hidden;
+  margin-top: 2.25rem;
+  border: 1px solid rgba(96, 165, 250, 0.32);
+  border-radius: var(--radius-xl);
+  background: rgba(19, 26, 36, 0.72);
+  box-shadow: var(--shadow-card);
+}
+
+.project-detail-page__image img {
+  display: block;
+  width: 100%;
+  height: auto;
+  max-height: 44rem;
+  object-fit: contain;
+}
+
+.project-detail-page__grid {
+  display: grid;
+  gap: 1rem;
+  margin-top: 1.25rem;
+}
+
+.project-detail-page__panel {
+  border: 1px solid rgba(148, 163, 184, 0.16);
+  border-radius: var(--radius-lg);
+  background: rgba(19, 26, 36, 0.68);
+  padding: clamp(1.15rem, 3vw, 1.65rem);
+}
+
+.project-detail-page__panel h2,
+.project-detail-page__next h2 {
+  color: var(--text-primary);
+  font-family: var(--font-display);
+  font-size: clamp(1.35rem, 2.5vw, 1.9rem);
+  font-weight: 900;
+  letter-spacing: -0.035em;
+}
+
+.project-detail-page__panel p,
+.project-detail-page__next p {
+  margin-top: 0.85rem;
+  color: var(--text-secondary);
+  line-height: 1.75;
+}
+
+.project-detail-page__panel p + p {
+  margin-top: 0.7rem;
+}
+
+.project-detail-page__panel ul {
+  display: grid;
+  gap: 0.7rem;
+  margin-top: 1rem;
+  color: var(--text-secondary);
+}
+
+.project-detail-page__panel li {
+  position: relative;
+  padding-left: 1rem;
+  line-height: 1.65;
+}
+
+.project-detail-page__panel li::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 0.65em;
+  width: 0.38rem;
+  height: 0.38rem;
+  border-radius: 999px;
+  background: var(--accent-cyan);
+}
+
+.project-detail-page__next {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1.25rem;
+  margin-top: 1.25rem;
+  border: 1px solid rgba(59, 130, 246, 0.3);
+  border-radius: var(--radius-xl);
+  background: linear-gradient(135deg, rgba(59, 130, 246, 0.14), rgba(34, 211, 238, 0.06));
+  padding: clamp(1.2rem, 3vw, 1.8rem);
+}
+
 .resume-page {
   min-height: 100vh;
   background:
@@ -2606,6 +2771,14 @@ a:focus-visible {
 @media (min-width: 1024px) {
   .education-grid {
     grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+
+  .project-detail-page__header {
+    grid-template-columns: minmax(0, 1fr) auto;
+  }
+
+  .project-detail-page__grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
   }
 
   .resume-page__header {
