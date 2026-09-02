@@ -56,8 +56,8 @@ export const projects: Project[] = [
     title: "ShowTime",
     shortDescription: "A public TypeScript project from Joydip's GitHub portfolio.",
     description: "Open the repository and live deployment to explore the available code, interface, and documentation.",
-    thumbnail: "",
-    images: [],
+    thumbnail: "/images/projects/showtime.png",
+    images: ["/images/projects/showtime.png"],
     category: "Full Stack",
     technologies: ["TypeScript"],
     features: [],
@@ -78,8 +78,8 @@ export const projects: Project[] = [
     title: "Student Management System",
     shortDescription: "A public TypeScript management system from Joydip's GitHub portfolio.",
     description: "Open the repository and live deployment to explore the available code, interface, and documentation.",
-    thumbnail: "",
-    images: [],
+    thumbnail: "/images/projects/student-management-system.png",
+    images: ["/images/projects/student-management-system.png"],
     category: "Dashboard",
     technologies: ["TypeScript"],
     features: [],
@@ -122,8 +122,8 @@ export const projects: Project[] = [
     title: "Ecommerce",
     shortDescription: "A public TypeScript e-commerce project from Joydip's GitHub portfolio.",
     description: "Open the repository and live deployment to explore the available code, interface, and documentation.",
-    thumbnail: "",
-    images: [],
+    thumbnail: "/images/projects/ecommerce.png",
+    images: ["/images/projects/ecommerce.png"],
     category: "E-Commerce",
     technologies: ["TypeScript"],
     features: [],
@@ -166,8 +166,8 @@ export const projects: Project[] = [
     title: "RasoiGo",
     shortDescription: "A public TypeScript project from Joydip's GitHub portfolio.",
     description: "Open the repository and live deployment to explore the available code, interface, and documentation.",
-    thumbnail: "",
-    images: [],
+    thumbnail: "/images/projects/rasoigo.png",
+    images: ["/images/projects/rasoigo.png"],
     category: "E-Commerce",
     technologies: ["TypeScript"],
     features: [],
@@ -188,8 +188,8 @@ export const projects: Project[] = [
     title: "Employee Management System",
     shortDescription: "A public TypeScript employee management project from Joydip's GitHub portfolio.",
     description: "Open the repository and live deployment to explore the available code, interface, and documentation.",
-    thumbnail: "",
-    images: [],
+    thumbnail: "/images/projects/employee-management-system.png",
+    images: ["/images/projects/employee-management-system.png"],
     category: "Dashboard",
     technologies: ["TypeScript"],
     features: [],
@@ -205,26 +205,26 @@ export const projects: Project[] = [
     icon: FaLayerGroup
   },
   {
-    id: "coderbit96",
-    slug: "coderbit96",
-    title: "coderbit96",
-    shortDescription: "A starred public repository from coderbit96's GitHub profile.",
-    description: "A starred public repository from coderbit96's GitHub profile. Open the repository to review the available code and documentation.",
-    thumbnail: "",
-    images: [],
-    category: "Other",
-    technologies: ["GitHub"],
-    features: ["Starred on GitHub"],
-    liveUrl: "",
-    githubUrl: "https://github.com/coderbit96/coderbit96",
-    featured: false,
+    id: "global-currency-converter",
+    slug: "global-currency-converter",
+    title: "Global Currency Converter",
+    shortDescription: "A React currency converter with live reference rates, offline fallback data, and recent conversion history.",
+    description: "A frontend-only currency converter with searchable currency selectors, rate details, cached fallback data, and accessible conversion controls.",
+    thumbnail: "/images/projects/global-currency-converter.png",
+    images: ["/images/projects/global-currency-converter.png"],
+    category: "Full Stack",
+    technologies: ["React", "Vite", "JavaScript", "Frankfurter API"],
+    features: ["Live reference rates", "Offline cached fallback", "Recent conversion history"],
+    liveUrl: "https://global-currency-converter-lake.vercel.app",
+    githubUrl: "https://github.com/coderbit96/Global-Currency-Converter",
+    featured: true,
     year: "2026",
-    status: "Repository only",
+    status: "Live",
     problem: "",
     solution: "",
     challenges: [],
-    repositoryName: "coderbit96",
-    icon: FaGithub
+    repositoryName: "Global-Currency-Converter",
+    icon: FaMoneyBillWave
   },
   {
     id: "atmos",
@@ -313,28 +313,6 @@ export const projects: Project[] = [
     challenges: [],
     repositoryName: "Durga",
     icon: FaHeart
-  },
-  {
-    id: "global-currency-converter",
-    slug: "global-currency-converter",
-    title: "Global Currency Converter",
-    shortDescription: "A public JavaScript project from Joydip's GitHub portfolio.",
-    description: "Open the repository and live deployment to explore the available code, interface, and documentation.",
-    thumbnail: "",
-    images: [],
-    category: "Other",
-    technologies: ["JavaScript"],
-    features: [],
-    liveUrl: "https://global-currency-converter-lake.vercel.app",
-    githubUrl: "https://github.com/coderbit96/Global-Currency-Converter",
-    featured: false,
-    year: "2026",
-    status: "Live",
-    problem: "",
-    solution: "",
-    challenges: [],
-    repositoryName: "Global-Currency-Converter",
-    icon: FaMoneyBillWave
   },
   {
     id: "ishani-riceceremony",
@@ -524,7 +502,7 @@ export const starredGithubRepositories = [
   { fullName: "coderbit96/Student-Management-System", repositoryName: "Student-Management-System", stars: 1 },
   { fullName: "coderbit96/Employee-Management", repositoryName: "Employee-Management", stars: 1 },
   { fullName: "coderbit96/RASOIGO", repositoryName: "RASOIGO", stars: 1 },
-  { fullName: "coderbit96/coderbit96", repositoryName: "coderbit96", stars: 1 }
+  { fullName: "coderbit96/Global-Currency-Converter", repositoryName: "Global-Currency-Converter", stars: 1 }
 ] as const;
 
 export const starredProjects = starredGithubRepositories
@@ -571,11 +549,25 @@ function buildFallbackProject(repo: LiveStarredRepo): Project {
 
 /** Merges live GitHub-starred repos with hand-authored project data, keeping GitHub as the source of truth for which repos appear. */
 export function mergeStarredProjects(liveRepos: LiveStarredRepo[]): Project[] {
-  return liveRepos.map((repo) => {
+  const visibleRepos = liveRepos.filter(
+    (repo) => repo.name.toLowerCase() !== "coderbit96"
+  );
+  const mergedProjects = visibleRepos.map((repo) => {
     const knownProject = projects.find(
       (project) => project.repositoryName.toLowerCase() === repo.name.toLowerCase()
     );
 
     return knownProject ?? buildFallbackProject(repo);
   });
+
+  const currencyConverter = projects.find(
+    (project) => project.repositoryName === "Global-Currency-Converter"
+  );
+  const hasCurrencyConverter = mergedProjects.some(
+    (project) => project.repositoryName === "Global-Currency-Converter"
+  );
+
+  return currencyConverter && !hasCurrencyConverter
+    ? [...mergedProjects, currencyConverter]
+    : mergedProjects;
 }

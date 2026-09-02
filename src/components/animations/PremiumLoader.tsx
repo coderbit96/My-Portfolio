@@ -24,8 +24,8 @@ export default function PremiumLoader() {
   const [isVisible, setIsVisible] = useState(true);
 
   useEffect(() => {
-    const letterDelay = shouldReduceMotion ? 80 : 360;
-    const revealDelay = shouldReduceMotion ? 100 : 820;
+    const letterDelay = shouldReduceMotion ? 80 : 300;
+    const revealDelay = shouldReduceMotion ? 100 : 700;
 
     if (step < LETTER_STEPS.length - 1) {
       const nextStepTimer = window.setTimeout(() => setStep((currentStep) => currentStep + 1), letterDelay);

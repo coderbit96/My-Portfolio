@@ -7,6 +7,7 @@ import {
   useMotionValue,
   useTransform
 } from "framer-motion";
+import Image from "next/image";
 import { useEffect, useRef, useState } from "react";
 import { FaExternalLinkAlt, FaGithub } from "react-icons/fa";
 import Reveal, { revealItem } from "@/components/animations/Reveal";
@@ -21,6 +22,7 @@ import {
 import useReducedMotion from "@/hooks/useReducedMotion";
 
 const fadeUp = revealItem();
+const projectImageVersion = "20260902-2";
 
 type ProjectRotationController = {
   stop: () => void;
@@ -28,7 +30,6 @@ type ProjectRotationController = {
 
 interface StarredProjectCardProps {
   project: Project;
-  index: number;
   onRotationStart: (_projectId: string) => boolean;
   onRotationEnd: (_projectId: string) => void;
   onRegisterController: (
@@ -40,7 +41,6 @@ interface StarredProjectCardProps {
 
 function StarredProjectCard({
   project,
-  index,
   onRotationStart,
   onRotationEnd,
   onRegisterController,
@@ -51,8 +51,6 @@ function StarredProjectCard({
   const contentRotationY = useTransform(rotationY, (latestRotation) => -latestRotation);
   const isRotatingRef = useRef(false);
   const rotationAnimationRef = useRef<ReturnType<typeof animate> | null>(null);
-  const Icon = project.icon;
-  const projectNumber = String(index + 1).padStart(2, "0");
 
   useEffect(() => {
     onRegisterController(project.id, {
@@ -127,15 +125,29 @@ function StarredProjectCard({
           className="project-secondary-card__content"
           style={{ rotateY: contentRotationY }}
         >
-          <div className="relative flex items-start justify-center">
-            <div className="project-secondary-card__icon">
-              <Icon aria-hidden="true" />
+          {project.thumbnail ? (
+            <div className="project-secondary-card__media">
+              <Image
+                src={`${project.thumbnail}?v=${projectImageVersion}`}
+                alt=""
+                aria-hidden="true"
+                fill
+                unoptimized
+                sizes="(min-width: 1024px) 20rem, (min-width: 640px) 45vw, 100vw"
+                className="project-secondary-card__image-background"
+              />
+              <Image
+                src={`${project.thumbnail}?v=${projectImageVersion}`}
+                alt={`${project.title} project preview`}
+                fill
+                unoptimized
+                sizes="(min-width: 1024px) 20rem, (min-width: 640px) 45vw, 100vw"
+                className="project-secondary-card__image"
+              />
             </div>
-
-            <div className="absolute right-0 top-0 flex flex-col items-end gap-2">
-              <span className="project-secondary-card__number">{projectNumber}</span>
-            </div>
-          </div>
+          ) : (
+            <div className="project-secondary-card__media" aria-hidden="true" />
+          )}
 
           <div className="mt-6 text-center">
             <h3 className="font-display text-2xl font-black leading-tight tracking-[-0.04em] text-white">
@@ -270,11 +282,10 @@ export default function Projects() {
             transition={{ duration: 0.32, ease: [0.22, 1, 0.36, 1] }}
             className="-m-3 grid gap-4 p-3 sm:grid-cols-2 lg:grid-cols-3"
           >
-            {starredProjects.map((project, index) => (
+            {starredProjects.map((project) => (
               <StarredProjectCard
                 key={project.id}
                 project={project}
-                index={index}
                 onRotationStart={handleRotationStart}
                 onRotationEnd={handleRotationEnd}
                 onRegisterController={handleRegisterController}

@@ -14,19 +14,18 @@ export default function Footer() {
         <div className="grid gap-10 border-b border-cyanGlow/30 pb-10 lg:grid-cols-[1.25fr_0.75fr_1fr] lg:gap-14">
           <section aria-labelledby="footer-brand-title">
             <div className="flex items-center gap-4">
-              <span className="grid h-[4.25rem] w-[4.25rem] shrink-0 place-items-center overflow-hidden rounded-2xl border border-goldGlow/80 bg-ink shadow-neon">
+              <span className="grid h-[5rem] w-[5rem] shrink-0 place-items-center overflow-hidden rounded-2xl border border-goldGlow/80 bg-transparent shadow-neon">
                 <Image
                   src="/images/logo.png"
                   alt="Joydip Ghosh logo"
-                  width={68}
-                  height={68}
+                  width={80}
+                  height={80}
                   quality={100}
                   className="h-full w-full object-cover"
                 />
               </span>
               <div>
-                <p className="text-xs font-bold uppercase tracking-[0.26em] text-goldGlow">Portfolio</p>
-                <h2 id="footer-brand-title" className="mt-1 text-2xl font-black text-white">Joydip Ghosh</h2>
+                <h2 id="footer-brand-title" className="text-[1.8rem] font-black text-white sm:text-[2.15rem]">Joydip Ghosh</h2>
               </div>
             </div>
             <p className="mt-5 max-w-md text-sm leading-7 text-slate-300">
@@ -68,7 +67,7 @@ export default function Footer() {
                     href={item.href}
                     target="_blank"
                     rel="noreferrer"
-                    className="group relative grid h-11 w-11 place-items-center overflow-hidden rounded-full border border-cyanGlow/45 bg-cyanGlow/10 text-mintGlow transition duration-300 hover:-translate-y-1 hover:scale-110 hover:border-goldGlow hover:bg-goldGlow hover:text-ink hover:shadow-neon focus:-translate-y-1 focus:scale-110 focus:border-goldGlow focus:bg-goldGlow focus:text-ink focus:shadow-neon focus:outline-none"
+                    className="footer-social-link group relative grid h-11 w-11 place-items-center overflow-hidden rounded-full border border-cyanGlow/45 bg-cyanGlow/10 text-mintGlow transition duration-300 hover:-translate-y-1 hover:scale-110 hover:border-goldGlow hover:bg-goldGlow hover:text-ink focus:-translate-y-1 focus:scale-110 focus:border-goldGlow focus:bg-goldGlow focus:text-ink focus:outline-none"
                     aria-label={item.label}
                     data-cursor="link"
                   >

@@ -159,7 +159,11 @@ export default function Skills() {
             const Icon = skill.icon;
 
             return (
-              <motion.div key={skill.name} variants={fadeUp}>
+              <motion.div
+                key={skill.name}
+                variants={fadeUp}
+                className="skill-card-v2__item"
+              >
                 <Card
                   as="article"
                   onPointerMove={handleCardPointerMove}
@@ -172,6 +176,7 @@ export default function Skills() {
                     <Icon aria-hidden="true" />
                   </div>
                 </Card>
+                <span className="skill-card-v2__name">{skill.name}</span>
               </motion.div>
             );
           })}

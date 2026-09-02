@@ -48,7 +48,7 @@ function EducationCard({
       rotationY.set(0);
 
       const rotationAnimation = animate(rotationY, [0, 180, 360], {
-        duration: 0.48,
+        duration: 0.3,
         ease: [0.16, 1, 0.3, 1],
         times: [0, 0.55, 1]
       });
@@ -62,7 +62,7 @@ function EducationCard({
           y: [0, -6, 0],
           rotateZ: [0, 0.45, 0],
           transition: {
-            duration: 0.48,
+            duration: 0.3,
             ease: [0.16, 1, 0.3, 1],
             times: [0, 0.55, 1]
           }

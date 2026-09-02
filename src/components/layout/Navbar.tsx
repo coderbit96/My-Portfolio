@@ -7,7 +7,6 @@ import { FaBars, FaDownload, FaMoon, FaSun, FaTimes } from "react-icons/fa";
 import { navbarItems } from "@/data/navigation";
 import { publicAssetUrl } from "@/lib/publicAssetUrl";
 import { useScrollSpy } from "@/providers/ScrollSpyProvider";
-import useMagnetic from "@/hooks/useMagnetic";
 
 const resumeHref = publicAssetUrl("resume/Joydip-Ghosh-Resume.pdf");
 
@@ -18,7 +17,6 @@ export default function Navbar() {
   const mobileMenuRef = useRef<HTMLDivElement | null>(null);
   const toggleButtonRef = useRef<HTMLButtonElement | null>(null);
   const { activeHref } = useScrollSpy();
-  const { enabled: magneticEnabled, onPointerMove, onPointerLeave } = useMagnetic({ maxOffsetX: 6, maxOffsetY: 5 });
 
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 12);
@@ -85,17 +83,17 @@ export default function Navbar() {
           className="group flex min-w-0 items-center gap-3 rounded-[12px] focus:outline-none focus-visible:ring-2 focus-visible:ring-brandBlue/50"
           aria-label="Joydip Ghosh home"
         >
-          <span className="brand-mark grid h-9 w-9 shrink-0 place-items-center overflow-hidden rounded-[10px]">
+          <span className="brand-mark grid h-10 w-10 shrink-0 place-items-center overflow-hidden rounded-[10px]">
             <Image
               src="/images/logo.png"
               alt="Joydip Ghosh logo"
-              width={36}
-              height={36}
+              width={40}
+              height={40}
               priority
               className="h-full w-full object-cover"
             />
           </span>
-          <span className="block truncate text-[0.68rem] font-black uppercase tracking-[0.14em] text-white sm:text-[0.78rem] sm:tracking-[0.22em]">
+          <span className="block truncate text-[0.74rem] font-black uppercase tracking-[0.14em] text-white sm:text-[0.84rem] sm:tracking-[0.22em]">
             Joydip Ghosh
           </span>
         </a>
@@ -132,8 +130,6 @@ export default function Navbar() {
             download="Joydip-Ghosh-Resume.pdf"
             className="navbar-cv-link"
             aria-label="Download Joydip Ghosh CV"
-            onPointerMove={magneticEnabled ? onPointerMove : undefined}
-            onPointerLeave={magneticEnabled ? onPointerLeave : undefined}
           >
             <FaDownload aria-hidden="true" />
             Download CV
