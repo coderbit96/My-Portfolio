@@ -1280,16 +1280,17 @@ a:focus-visible {
   min-height: 2.25rem;
   align-items: center;
   gap: 0.55rem;
-  color: var(--text-secondary);
+  color: var(--text-primary);
   font-size: clamp(0.85rem, 1.6vw, 1rem);
-  font-weight: 700;
+  font-weight: 800;
   letter-spacing: 0.01em;
 }
 
 .hero-role-viewport {
   position: relative;
   display: inline-flex;
-  height: 2.25rem;
+  height: 2.5rem;
+  flex: 0 1 auto;
   align-items: center;
   overflow: hidden;
 }
@@ -1297,14 +1298,10 @@ a:focus-visible {
 .hero-role-word {
   display: inline-flex;
   align-items: center;
-  min-height: 2rem;
-  border: 1px solid rgba(59, 130, 246, 0.42);
-  border-radius: 0.45rem;
-  background: rgba(59, 130, 246, 0.1);
-  padding: 0.25rem 0.5rem;
-  color: var(--text-primary);
+  min-height: 0;
+  color: var(--accent-cyan);
   font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
-  font-size: 0.8em;
+  font-size: 0.9rem;
   font-weight: 750;
   letter-spacing: 0.04em;
   text-transform: uppercase;
