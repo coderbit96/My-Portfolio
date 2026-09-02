@@ -5,7 +5,7 @@ import { createPortal } from "react-dom";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { AnimatePresence, motion } from "framer-motion";
-import { FaCheckCircle, FaExclamationCircle, FaPaperPlane, FaTimes } from "react-icons/fa";
+import { FaCheckCircle, FaExclamationCircle, FaTimes } from "react-icons/fa";
 import MagneticButton from "@/components/ui/MagneticButton";
 import { contactFormSchema, type ContactFormValues } from "@/lib/validation/contact";
 
@@ -177,8 +177,7 @@ export default function ContactForm() {
       </div>
 
       <div className="flex flex-col items-start gap-3 sm:flex-row sm:items-center sm:justify-between">
-        <MagneticButton magnetic type="submit" disabled={isSubmitting} className="w-full bg-cyanGlow/15 sm:w-auto">
-          <FaPaperPlane className="text-cyanGlow" />
+        <MagneticButton magnetic type="submit" disabled={isSubmitting} className="!min-h-10 !w-40 !gap-0 !bg-cyanGlow/15 !px-4 !py-2 sm:!px-4">
           {isSubmitting ? "Sending" : "Send message"}
         </MagneticButton>
         {status.message ? (

@@ -789,19 +789,38 @@ textarea,
 
 .badge-v2 {
   display: inline-flex;
-  min-height: 1.875rem;
+  min-height: 2.15rem;
   align-items: center;
   gap: 0.5rem;
   border-radius: 999px;
   border: 1px solid rgba(59, 130, 246, 0.36);
   background: rgba(59, 130, 246, 0.1);
-  padding: 0.35rem 0.7rem;
+  padding: 0.42rem 0.85rem;
   color: var(--text-primary);
-  font-size: 0.75rem;
+  font-size: 0.8rem;
   font-weight: 650;
   line-height: 1;
   letter-spacing: 0.04em;
   text-transform: uppercase;
+  box-shadow:
+    0 0 10px rgba(37, 99, 235, 0.24),
+    0 0 22px rgba(34, 211, 238, 0.1);
+  animation: section-badge-glow 2.6s ease-in-out infinite;
+}
+
+@keyframes section-badge-glow {
+  0%,
+  100% {
+    box-shadow:
+      0 0 9px rgba(37, 99, 235, 0.18),
+      0 0 18px rgba(34, 211, 238, 0.07);
+  }
+
+  50% {
+    box-shadow:
+      0 0 15px rgba(59, 130, 246, 0.48),
+      0 0 30px rgba(34, 211, 238, 0.24);
+  }
 }
 
 .btn-v2,
@@ -1761,15 +1780,15 @@ a:focus-visible {
 
 .skill-card-v2__icon {
   display: grid;
-  width: 2.3rem;
-  height: 2.3rem;
+  width: 2.5rem;
+  height: 2.5rem;
   flex: 0 0 auto;
   place-items: center;
   border: 1px solid color-mix(in srgb, var(--skill-color, var(--accent-cyan)) 38%, transparent);
   border-radius: var(--radius-md);
   background: color-mix(in srgb, var(--skill-color, var(--accent-cyan)) 14%, transparent);
   color: var(--skill-color, var(--accent-cyan));
-  font-size: 0.9rem;
+  font-size: 1.15rem;
   transition:
     color 180ms ease,
     transform 180ms ease,
@@ -1918,6 +1937,7 @@ a:focus-visible {
 }
 
 .experience-timeline-card__period {
+  flex: none;
   width: fit-content;
   border: 1px solid rgba(59, 130, 246, 0.3);
   border-radius: 999px;
@@ -1926,6 +1946,12 @@ a:focus-visible {
   color: var(--text-primary);
   font-size: 0.78rem;
   font-weight: 900;
+  white-space: nowrap;
+}
+
+.skill-card-v2__icon svg {
+  filter: drop-shadow(0 0 5px color-mix(in srgb, var(--skill-color, var(--accent-cyan)) 72%, transparent));
+  transform: scale(1.08);
 }
 
 .experience-timeline-card__description {
@@ -2184,6 +2210,55 @@ a:focus-visible {
   opacity: 0.75;
 }
 
+.footer-role-badge {
+  box-shadow:
+    0 0 10px rgba(37, 99, 235, 0.34),
+    0 0 24px rgba(34, 211, 238, 0.2);
+  animation: footer-role-glow 2.4s ease-in-out infinite;
+}
+
+.footer-nav-link {
+  transition:
+    color 180ms ease,
+    background-color 180ms ease,
+    box-shadow 180ms ease,
+    transform 180ms ease;
+}
+
+.footer-nav-link:hover,
+.footer-nav-link:focus-visible {
+  color: #67e8f9;
+  background: rgba(34, 211, 238, 0.12);
+  box-shadow: 0 0 16px rgba(34, 211, 238, 0.2);
+  transform: translateY(-2px);
+}
+
+.footer-nav-link span {
+  transition: transform 180ms ease, box-shadow 180ms ease, background-color 180ms ease;
+}
+
+.footer-nav-link:hover span,
+.footer-nav-link:focus-visible span {
+  background: #67e8f9;
+  box-shadow: 0 0 10px rgba(34, 211, 238, 0.8);
+  transform: scale(1.25);
+}
+
+@keyframes footer-role-glow {
+  0%,
+  100% {
+    box-shadow:
+      0 0 8px rgba(37, 99, 235, 0.24),
+      0 0 18px rgba(34, 211, 238, 0.12);
+  }
+
+  50% {
+    box-shadow:
+      0 0 15px rgba(59, 130, 246, 0.62),
+      0 0 34px rgba(34, 211, 238, 0.38);
+  }
+}
+
 @keyframes footer-social-glow {
   0%,
   100% {
@@ -2196,6 +2271,13 @@ a:focus-visible {
     box-shadow:
       0 0 14px rgba(34, 211, 238, 0.46),
       0 0 28px rgba(74, 222, 128, 0.3);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .footer-role-badge,
+  .badge-v2 {
+    animation: none;
   }
 }
 
@@ -2788,9 +2870,9 @@ a:focus-visible {
 
 @media (max-width: 640px) {
   .skill-card-v2__icon {
-    width: 2rem;
-    height: 2rem;
-    font-size: 0.98rem;
+    width: 2.2rem;
+    height: 2.2rem;
+    font-size: 1.05rem;
   }
 
   .experience-timeline-header {

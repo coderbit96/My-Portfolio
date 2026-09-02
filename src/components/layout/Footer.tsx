@@ -29,7 +29,7 @@ export default function Footer() {
               </div>
             </div>
             <p className="mt-5 max-w-md text-sm leading-7 text-slate-300">
-              <span className="inline-block rounded-md border border-goldGlow/60 bg-cyanGlow/30 px-2 py-0.5 font-black tracking-wide text-goldGlow">
+              <span className="footer-role-badge inline-block rounded-md border border-goldGlow/60 bg-cyanGlow/30 px-2 py-0.5 font-black tracking-wide text-goldGlow">
                 Full-Stack Developer
               </span>
             </p>
@@ -43,7 +43,7 @@ export default function Footer() {
                 <li key={item.href}>
                   <a
                     href={`/${item.href}`}
-                    className="group inline-flex min-h-9 items-center gap-1.5 rounded-[8px] px-2 text-xs font-semibold text-slate-300 transition hover:bg-cyanGlow/15 hover:text-goldGlow focus:bg-cyanGlow/15 focus:text-goldGlow focus:outline-none"
+                    className="footer-nav-link group inline-flex min-h-9 items-center gap-1.5 rounded-[8px] px-2 text-xs font-semibold text-slate-300 transition focus:outline-none"
                   >
                     <span className="h-1.5 w-1.5 rounded-full bg-cyanGlow transition group-hover:bg-goldGlow" />
                     {item.label}
