@@ -11,9 +11,9 @@ export const siteConfig = {
   linkedin: "https://www.linkedin.com/in/joydip-ghosh-83073033a",
   socialProfiles: [
     "https://github.com/coderbit96",
-    "https://www.linkedin.com/in/joydip-ghosh-83073033a",
-    "https://www.facebook.com/share/1GfuCcyyhp/",
-    "https://www.instagram.com/ex.plorer_96?igsh=MW16NDJmOGQzaHc1Yg=="
+    "https://www.linkedin.com/in/joydip-ghosh-83073033a/",
+    "https://www.facebook.com/share/1DSUQ3Mw93/",
+    "https://www.instagram.com/joydip.69?igsi=MW16NDJmOGQzaHc1Yg=="
   ],
   locale: "en_US",
   themeColor: "#080B10",

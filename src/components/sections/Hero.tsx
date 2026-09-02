@@ -30,7 +30,7 @@ const heroSocials = [
   { label: "GitHub", href: "https://github.com/coderbit96", icon: FaGithub },
   {
     label: "LinkedIn",
-    href: "https://www.linkedin.com/in/joydip-ghosh-83073033a?utm_source=share_via&utm_content=profile&utm_medium=member_android",
+    href: "https://www.linkedin.com/in/joydip-ghosh-83073033a/",
     icon: FaLinkedinIn
   },
   { label: "Email", href: "mailto:joydip.work.mail@gmail.com", icon: FaEnvelope }
