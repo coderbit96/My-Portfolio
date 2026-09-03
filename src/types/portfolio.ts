@@ -11,6 +11,7 @@ export type SkillCategory =
   | "Database"
   | "Cloud / Deployment"
   | "Tools"
+  | "AI Tools"
   | "Other";
 
 export interface SkillItem {
