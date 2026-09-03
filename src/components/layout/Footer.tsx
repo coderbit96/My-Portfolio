@@ -30,7 +30,7 @@ export default function Footer() {
             </div>
             <p className="mt-5 max-w-md text-sm leading-7 text-slate-300">
               <span className="footer-role-badge inline-block rounded-md border border-goldGlow/60 bg-cyanGlow/30 px-2 py-0.5 font-black tracking-wide text-goldGlow">
-                Full-Stack Developer
+                AI Full Stack Developer
               </span>
             </p>
             <CopyEmailButton email="joydip.work.mail@gmail.com" />

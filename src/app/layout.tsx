@@ -37,7 +37,7 @@ export const metadata: Metadata = {
         width: 1200,
         height: 630,
         type: "image/png",
-        alt: "Joydip Ghosh — Full-Stack Developer"
+        alt: "Joydip Ghosh — AI Full Stack Developer"
       }
     ]
   },
@@ -50,7 +50,7 @@ export const metadata: Metadata = {
         url: "/opengraph-image",
         width: 1200,
         height: 630,
-        alt: "Joydip Ghosh — Full-Stack Developer"
+        alt: "Joydip Ghosh — AI Full Stack Developer"
       }
     ]
   },
@@ -121,8 +121,8 @@ const structuredData = {
       email: `mailto:${siteConfig.email}`,
       image: `${siteConfig.url}/images/joydip-ghosh-profile.png`,
       description:
-        "Joydip Ghosh is a Full Stack Developer, Web Developer and Website Developer based in Kolkata, India.",
-      jobTitle: "Full Stack Developer and Website Developer",
+        "Joydip Ghosh is an AI Full Stack Developer, Web Developer and Website Developer based in Kolkata, India.",
+      jobTitle: "AI Full Stack Developer and Website Developer",
       address: {
         "@type": "PostalAddress",
         addressLocality: "Kolkata",
@@ -138,7 +138,7 @@ const structuredData = {
       },
       hasOccupation: {
         "@type": "Occupation",
-        name: "Full Stack Developer",
+        name: "AI Full Stack Developer",
         occupationLocation: {
           "@type": "City",
           name: "Kolkata, India"
@@ -179,7 +179,7 @@ const structuredData = {
       "@type": "ProfilePage",
       "@id": `${siteConfig.url}/#profile`,
       url: siteConfig.url,
-      name: "Joydip Ghosh | Full Stack Developer",
+      name: "Joydip Ghosh | AI Full Stack Developer",
       mainEntity: {
         "@id": `${siteConfig.url}/#person`
       },

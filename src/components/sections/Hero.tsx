@@ -43,7 +43,7 @@ const techCards = [
   { label: "MongoDB", icon: SiMongodb, className: "bottom-[12%] right-0 translate-x-2 sm:translate-x-8" }
 ];
 
-const heroRoles = ["Full Stack Developer", "AI Developer", "Creative Coder"];
+const heroRoles = ["AI Full Stack Developer", "AI Developer", "Creative Coder"];
 
 function AnimatedRole({ shouldReduceMotion }: { shouldReduceMotion: boolean }) {
   const [roleIndex, setRoleIndex] = useState(0);
@@ -81,7 +81,7 @@ function AnimatedRole({ shouldReduceMotion }: { shouldReduceMotion: boolean }) {
           </AnimatePresence>
         )}
       </span>
-      <span className="sr-only">Full Stack Developer, AI Developer, and Creative Coder.</span>
+      <span className="sr-only">AI Full Stack Developer, AI Developer, and Creative Coder.</span>
     </div>
   );
 }

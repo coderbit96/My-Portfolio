@@ -1,7 +1,7 @@
 import { ImageResponse } from "next/og";
 import { siteConfig } from "@/data/site";
 
-export const alt = "Joydip Ghosh — Full-Stack Developer";
+export const alt = "Joydip Ghosh — AI Full Stack Developer";
 export const size = {
   width: 1200,
   height: 630
@@ -110,7 +110,7 @@ export default function OpenGraphImage() {
               color: "#F5F7FA"
             }}
           >
-            Full-Stack Developer
+            AI Full Stack Developer
           </div>
           <div
             style={{

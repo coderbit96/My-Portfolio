@@ -27,7 +27,7 @@ export async function generateMetadata({ params }: ProjectPageProps): Promise<Me
   if (!project) return {};
 
   const title = `${project.title} Project`;
-  const description = `${project.description} Built by Joydip Ghosh, Full Stack Developer and Website Developer in Kolkata.`;
+  const description = `${project.description} Built by Joydip Ghosh, AI Full Stack Developer and Website Developer in Kolkata.`;
   const image = project.thumbnail || "/opengraph-image";
 
   return {
@@ -95,7 +95,7 @@ export default async function ProjectPage({ params }: ProjectPageProps) {
               <p className="case-study-kicker">{project.category} Project</p>
               <h1>{project.title}</h1>
               <p>
-                {project.shortDescription} Created by Joydip Ghosh, a Full Stack Developer and Website Developer based in Kolkata, India.
+                {project.shortDescription} Created by Joydip Ghosh, an AI Full Stack Developer and Website Developer based in Kolkata, India.
               </p>
             </div>
             <div className="project-detail-page__actions">
@@ -157,7 +157,7 @@ export default async function ProjectPage({ params }: ProjectPageProps) {
           <aside className="project-detail-page__next" aria-label="Continue exploring">
             <div>
               <p className="case-study-kicker">Explore More</p>
-              <h2>Looking for a Full Stack or Website Developer?</h2>
+              <h2>Looking for an AI Full Stack Developer or Website Developer?</h2>
               <p>Explore Joydip&apos;s skills, other projects, and contact options for freelance or full-time opportunities.</p>
             </div>
             <div className="project-detail-page__actions">

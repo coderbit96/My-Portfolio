@@ -10,17 +10,17 @@ const resumePreviewHref = publicAssetUrl("resume/pdf");
 
 export const metadata: Metadata = {
   title: {
-    absolute: "Joydip Ghosh Resume | Full Stack Developer"
+    absolute: "Joydip Ghosh Resume | AI Full Stack Developer"
   },
   description:
-    "Preview and download the resume of Joydip Ghosh, a Full Stack Developer, Web Developer and Website Developer based in Kolkata, India.",
+    "Preview and download the resume of Joydip Ghosh, an AI Full Stack Developer, Web Developer and Website Developer based in Kolkata, India.",
   alternates: {
     canonical: "/resume"
   },
   openGraph: {
-    title: "Joydip Ghosh Resume | Full Stack Developer",
+    title: "Joydip Ghosh Resume | AI Full Stack Developer",
     description:
-      "Preview the professional resume of Joydip Ghosh, Full Stack Developer and Website Developer in Kolkata.",
+      "Preview the professional resume of Joydip Ghosh, AI Full Stack Developer and Website Developer in Kolkata.",
     url: "/resume",
     type: "profile",
     images: [
@@ -29,21 +29,21 @@ export const metadata: Metadata = {
         width: 1200,
         height: 630,
         type: "image/png",
-        alt: "Joydip Ghosh Full-Stack Developer resume"
+        alt: "Joydip Ghosh AI Full Stack Developer resume"
       }
     ]
   },
   twitter: {
     card: "summary_large_image",
-    title: "Joydip Ghosh Resume | Full Stack Developer",
+    title: "Joydip Ghosh Resume | AI Full Stack Developer",
     description:
-      "Preview the professional resume of Joydip Ghosh, Full Stack Developer and Website Developer in Kolkata.",
+      "Preview the professional resume of Joydip Ghosh, AI Full Stack Developer and Website Developer in Kolkata.",
     images: [
       {
         url: "/opengraph-image",
         width: 1200,
         height: 630,
-        alt: "Joydip Ghosh Full-Stack Developer resume"
+        alt: "Joydip Ghosh AI Full Stack Developer resume"
       }
     ]
   }

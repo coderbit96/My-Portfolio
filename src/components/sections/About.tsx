@@ -62,7 +62,7 @@ export default function About() {
             variants={fadeUp}
             className="mx-auto mt-6 max-w-2xl text-center text-base leading-8 text-slate-300 sm:text-lg"
           >
-            I&apos;m Joydip Ghosh, a full-stack developer focused on turning clear
+            I&apos;m Joydip Ghosh, an AI Full Stack Developer focused on turning clear
             ideas into responsive, maintainable web applications. My work
             blends frontend polish with practical backend thinking across
             React, Next.js, TypeScript, Node.js, MongoDB, WordPress, and SEO-aware
