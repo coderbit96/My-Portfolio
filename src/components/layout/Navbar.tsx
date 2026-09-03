@@ -83,17 +83,17 @@ export default function Navbar() {
           className="group flex min-w-0 items-center gap-3 rounded-[12px] focus:outline-none focus-visible:ring-2 focus-visible:ring-brandBlue/50"
           aria-label="Joydip Ghosh home"
         >
-          <span className="brand-mark grid h-10 w-10 shrink-0 place-items-center overflow-hidden rounded-[10px]">
+          <span className="brand-mark grid h-12 w-12 shrink-0 place-items-center overflow-hidden rounded-[12px]">
             <Image
               src="/images/logo.png"
               alt="Joydip Ghosh logo"
-              width={40}
-              height={40}
+              width={48}
+              height={48}
               priority
               className="h-full w-full object-cover"
             />
           </span>
-          <span className="block truncate text-[0.74rem] font-black uppercase tracking-[0.14em] text-white sm:text-[0.84rem] sm:tracking-[0.22em]">
+          <span className="block truncate text-[0.86rem] font-black uppercase tracking-[0.16em] text-white sm:text-[1rem] sm:tracking-[0.22em]">
             Joydip Ghosh
           </span>
         </a>

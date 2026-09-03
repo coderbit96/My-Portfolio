@@ -70,7 +70,7 @@ export default function HeroBirdsBackground() {
         color1: isLightTheme ? 0x2563eb : 0x3b82f6,
         color2: isLightTheme ? 0x0891b2 : 0x22d3ee,
         colorMode: "lerp",
-        quantity: 5,
+        quantity: 12,
         birdSize: 0.8,
         wingSpan: 25,
         speedLimit: 3,

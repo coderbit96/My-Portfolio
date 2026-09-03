@@ -94,7 +94,7 @@ export default function Footer() {
           href="https://wa.me/919641212416"
           target="_blank"
           rel="noreferrer"
-          className="group relative grid h-12 w-12 place-items-center rounded-full border border-goldGlow/60 bg-goldGlow text-2xl text-ink shadow-[0_0_28px_rgba(244,244,244,0.42)] transition duration-300 hover:scale-110 hover:shadow-[0_0_38px_rgba(244,244,244,0.62)] focus:outline-none focus:ring-2 focus:ring-goldGlow focus:ring-offset-2 focus:ring-offset-ink sm:h-14 sm:w-14"
+          className="group relative grid h-14 w-14 place-items-center rounded-full border border-goldGlow/60 bg-goldGlow text-[1.85rem] text-ink shadow-[0_0_28px_rgba(244,244,244,0.42)] transition duration-300 hover:scale-110 hover:shadow-[0_0_38px_rgba(244,244,244,0.62)] focus:outline-none focus:ring-2 focus:ring-goldGlow focus:ring-offset-2 focus:ring-offset-ink sm:h-16 sm:w-16"
           aria-label="Chat with Joydip on WhatsApp"
           title="Chat on WhatsApp"
           data-cursor="link"
