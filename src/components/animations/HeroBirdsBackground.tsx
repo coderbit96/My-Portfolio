@@ -70,7 +70,9 @@ export default function HeroBirdsBackground() {
         color1: isLightTheme ? 0x2563eb : 0x3b82f6,
         color2: isLightTheme ? 0x0891b2 : 0x22d3ee,
         colorMode: "lerp",
-        quantity: 12,
+        // Vanta treats this as an exponent: 6 renders 2^(6 * 2) = 4,096
+        // birds. Higher values grow exponentially and can exhaust the GPU.
+        quantity: 6,
         birdSize: 0.8,
         wingSpan: 25,
         speedLimit: 3,

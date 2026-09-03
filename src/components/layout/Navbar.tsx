@@ -27,11 +27,8 @@ export default function Navbar() {
   }, []);
 
   useEffect(() => {
-    const savedTheme = window.localStorage.getItem("portfolio-theme");
-    const initialTheme = savedTheme === "light" ? "light" : "dark";
-
-    setTheme(initialTheme);
-    document.documentElement.dataset.theme = initialTheme;
+    setTheme("dark");
+    document.documentElement.dataset.theme = "dark";
   }, []);
 
   useEffect(() => {
@@ -60,7 +57,6 @@ export default function Navbar() {
     const nextTheme = theme === "dark" ? "light" : "dark";
     setTheme(nextTheme);
     document.documentElement.dataset.theme = nextTheme;
-    window.localStorage.setItem("portfolio-theme", nextTheme);
   };
 
   const themeToggleLabel = theme === "dark" ? "Switch to light mode" : "Switch to dark mode";
