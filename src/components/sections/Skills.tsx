@@ -153,7 +153,7 @@ export default function Skills() {
           stagger
           amount={0.1}
           staggerDelay={0.02}
-          className="mt-10 grid grid-cols-5 gap-x-2 gap-y-5 sm:gap-x-4"
+          className="mt-10 grid grid-cols-2 gap-x-2 gap-y-5 sm:grid-cols-4 sm:gap-x-4 lg:grid-cols-7"
         >
           {skills.map((skill, skillIndex) => {
             const Icon = skill.icon;

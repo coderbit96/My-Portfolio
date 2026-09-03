@@ -8,7 +8,9 @@ import {
 import {
   SiExpress,
   SiFirebase,
+  SiClaude,
   SiGithub,
+  SiGooglegemini,
   SiHtml5,
   SiJavascript,
   SiJsonwebtokens,
@@ -18,6 +20,7 @@ import {
   SiMysql,
   SiNextdotjs,
   SiNodedotjs,
+  SiOpenai,
   SiPhp,
   SiPostman,
   SiPython,
@@ -52,6 +55,10 @@ export const skills: SkillItem[] = [
 
   { name: "GitHub", category: "Tools", icon: SiGithub, color: "#FFFFFF", context: "Repository workflow" },
   { name: "Postman", category: "Tools", icon: SiPostman, color: "#FF6C37", context: "API testing" },
+
+  { name: "Claude", category: "AI Tools", icon: SiClaude, color: "#D97757", context: "AI-assisted reasoning" },
+  { name: "Codex", category: "AI Tools", icon: SiOpenai, color: "#10A37F", context: "AI-assisted coding" },
+  { name: "Gemini", category: "AI Tools", icon: SiGooglegemini, color: "#8E75B2", context: "Multimodal AI assistance" },
 
   { name: "WordPress", category: "Other", icon: FaWordpressSimple, color: "#21759B", context: "CMS websites" },
   { name: "SEO", category: "Other", icon: FaSearch, color: "#22D3EE", context: "Search-aware structure" },
