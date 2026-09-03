@@ -9,16 +9,7 @@ import { FaCheckCircle, FaExclamationCircle, FaTimes } from "react-icons/fa";
 import MagneticButton from "@/components/ui/MagneticButton";
 import { contactFormSchema, type ContactFormValues } from "@/lib/validation/contact";
 
-const readPublicEnv = (key: string) =>
-  typeof process !== "undefined" ? process.env[key] || "" : "";
-
-const emailConfig = {
-  serviceId: readPublicEnv("NEXT_PUBLIC_EMAILJS_SERVICE_ID"),
-  templateId: readPublicEnv("NEXT_PUBLIC_EMAILJS_TEMPLATE_ID"),
-  publicKey: readPublicEnv("NEXT_PUBLIC_EMAILJS_PUBLIC_KEY")
-};
-
-const recipientEmail = readPublicEnv("NEXT_PUBLIC_CONTACT_EMAIL") || "joydip.work.mail@gmail.com";
+const recipientEmail = "joydip.work.mail@gmail.com";
 
 type FormStatus = {
   type: "idle" | "success" | "error";
@@ -54,7 +45,7 @@ export default function ContactForm() {
     setMounted(true);
   }, []);
 
-  const onSubmit = handleSubmit(async (values) => {
+  const onSubmit = handleSubmit((values) => {
     setStatus({ type: "idle", message: "" });
 
     if (values.company) {
@@ -64,38 +55,12 @@ export default function ContactForm() {
       return;
     }
 
-    if (!emailConfig.serviceId || !emailConfig.templateId || !emailConfig.publicKey) {
-      setStatus({
-        type: "error",
-        message: "Add your EmailJS service ID, template ID, and public key in .env to enable direct email delivery."
-      });
-      return;
-    }
+    const subject = encodeURIComponent(values.subject);
+    const body = encodeURIComponent(`Name: ${values.name}\nEmail: ${values.email}\n\n${values.message}`);
 
-    try {
-      const { default: emailjs } = await import("@emailjs/browser");
-      const templateParams = {
-        to_name: "Joydip Ghosh",
-        to_email: recipientEmail,
-        from_name: values.name,
-        from_email: values.email,
-        reply_to: values.email,
-        subject: values.subject,
-        message: values.message
-      };
-
-      await emailjs.send(emailConfig.serviceId, emailConfig.templateId, templateParams, {
-        publicKey: emailConfig.publicKey
-      });
-
-      reset();
-      setStatus({ type: "success", message: "Message sent directly to Joydip's inbox." });
-    } catch {
-      setStatus({
-        type: "error",
-        message: "Message could not be sent. Check your EmailJS service, template variables, and public key."
-      });
-    }
+    window.location.href = `mailto:${recipientEmail}?subject=${subject}&body=${body}`;
+    reset();
+    setStatus({ type: "success", message: "Your email app has opened with the message ready to send." });
   });
 
   return (

@@ -14,7 +14,7 @@ Dark mode is the default. Visitors can switch to light mode, and their choice is
 - Skill groups for frontend, backend knowledge, programming, CMS, and digital marketing.
 - Curated project showcase with category filters and dedicated project case-study pages (`/projects/[slug]`).
 - Certificate viewer powered by PDF.js.
-- Contact form (React Hook Form + Zod validation) with client-side EmailJS delivery and clear success/error states.
+- Contact form (React Hook Form + Zod validation) with honeypot spam protection and a prefilled mailto message.
 - Optional custom cursor with contextual hover states on desktop, always falling back to the native cursor on touch, reduced motion, or failure.
 - Optional "Fun experiment" Tic-Tac-Toe game against a browser-based AI opponent; scores persist in `localStorage`.
 - Accessible keyboard controls, visible focus styles, reduced-motion support, hover effects, tilt cards, magnetic buttons, typewriter animation, and optional UI sound.
@@ -28,7 +28,7 @@ Dark mode is the default. Visitors can switch to light mode, and their choice is
 | Styling | Tailwind CSS 3, PostCSS, Autoprefixer, custom CSS |
 | Animation | Framer Motion, GSAP ScrollTrigger, Lenis smooth scrolling |
 | Forms & validation | React Hook Form, Zod |
-| Integrations | EmailJS Browser SDK, PDF.js |
+| Integrations | PDF.js |
 | Quality | ESLint (`eslint-config-next`), TypeScript strict mode |
 
 ## Quick start
@@ -47,14 +47,6 @@ npm run dev
 
 The development server runs at `http://127.0.0.1:3000` by default.
 
-To enable the contact form, also create a local environment file:
-
-```powershell
-Copy-Item .env.example .env
-```
-
-Then add the EmailJS values described below.
-
 ## Available scripts
 
 | Command | Description |
@@ -66,15 +58,7 @@ Then add the EmailJS values described below.
 
 ## Environment variables
 
-The contact form uses EmailJS. Copy `.env.example` to `.env` and set:
-
-```dotenv
-NEXT_PUBLIC_EMAILJS_SERVICE_ID=your_service_id
-NEXT_PUBLIC_EMAILJS_TEMPLATE_ID=your_template_id
-NEXT_PUBLIC_EMAILJS_PUBLIC_KEY=your_public_key
-```
-
-These are client-side EmailJS settings. Do not place private server secrets in any `NEXT_PUBLIC_` variable.
+The contact form needs no environment variables. It validates the visitor's details, filters honeypot spam, then opens their default email app with a prefilled message addressed to `joydip.work.mail@gmail.com`.
 
 The optional Portfolio Assistant works in a structured demo mode by default. To enable server-side Gemini responses, add the following server-only values to `.env`:
 
@@ -85,20 +69,7 @@ GEMINI_MODEL=gemini-3.7-flash
 
 The API key is read only by `src/app/api/portfolio-assistant/route.ts`; it is never exposed to the browser. Without a key, the assistant remains functional using the existing portfolio data.
 
-The contact form (`src/components/contact/ContactForm.tsx`) validates input with React Hook Form and a shared Zod schema (`src/lib/validation/contact.ts`), then sends the message directly from the browser using the EmailJS Browser SDK — there is no server-side API route or backend involved.
-
-The EmailJS template receives:
-
-| Template field | Value |
-| --- | --- |
-| `to_name` | Joydip Ghosh |
-| `to_email` | `joydip.work.mail@gmail.com` |
-| `from_name` | Visitor name |
-| `from_email` / `reply_to` | Visitor email |
-| `subject` | Visitor subject |
-| `message` | Visitor message |
-
-Without these values, the page still works and the form explains that EmailJS must be configured.
+The contact form (`src/components/contact/ContactForm.tsx`) validates input with React Hook Form and a shared Zod schema (`src/lib/validation/contact.ts`). Submitting the form opens a prefilled `mailto:` message to `joydip.work.mail@gmail.com`; the visitor sends it using their own email app.
 
 ## Project structure
 
@@ -165,7 +136,7 @@ In Vercel, use:
 - **Build Command:** `npm run build`
 - **Output Directory:** (default, managed by Next.js)
 
-Add the EmailJS variables in the Vercel project settings before deploying if contact delivery is required.
+No Vercel environment variables are required for the contact form.
 
 `vercel.json` also sends each education-result PDF with an attachment header, so all three result links download instead of opening inline.
 
