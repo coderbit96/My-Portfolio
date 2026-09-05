@@ -6,6 +6,7 @@ export default function manifest(): MetadataRoute.Manifest {
     name: siteConfig.name,
     short_name: "Joydip Ghosh",
     description: siteConfig.description,
+    id: "/",
     start_url: "/",
     scope: "/",
     display: "standalone",

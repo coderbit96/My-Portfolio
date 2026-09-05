@@ -20,6 +20,11 @@ export const metadata: Metadata = {
   creator: siteConfig.author,
   publisher: siteConfig.author,
   applicationName: siteConfig.name,
+  appleWebApp: {
+    capable: true,
+    statusBarStyle: "black-translucent",
+    title: "Joydip Ghosh"
+  },
   category: "portfolio",
   alternates: {
     canonical: "/"
