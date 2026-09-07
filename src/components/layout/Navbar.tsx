@@ -4,6 +4,7 @@ import { AnimatePresence, motion } from "framer-motion";
 import Image from "next/image";
 import { useEffect, useRef, useState } from "react";
 import { FaBars, FaDownload, FaMoon, FaSun, FaTimes } from "react-icons/fa";
+import InstallAppButton from "@/components/pwa/InstallAppButton";
 import { navbarItems } from "@/data/navigation";
 import { publicAssetUrl } from "@/lib/publicAssetUrl";
 import { useScrollSpy } from "@/providers/ScrollSpyProvider";
@@ -178,6 +179,7 @@ export default function Navbar() {
               })}
             </div>
 
+            <InstallAppButton />
             <a
               href={resumeHref}
               download="Joydip-Ghosh-Resume.pdf"

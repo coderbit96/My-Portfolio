@@ -1,7 +1,7 @@
 /* global caches, fetch, self, URL */
 
-const CACHE_NAME = "joydip-portfolio-v1";
-const APP_SHELL = ["/", "/manifest.webmanifest", "/icons/favicon-512.png", "/images/logo-180.png"];
+const CACHE_NAME = "joydip-portfolio-v2";
+const APP_SHELL = ["/", "/manifest.webmanifest", "/icons/favicon-192.png", "/icons/favicon-512.png", "/images/logo-180.png"];
 
 self.addEventListener("install", (event) => {
   event.waitUntil(
