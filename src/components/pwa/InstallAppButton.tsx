@@ -1,7 +1,7 @@
 "use client";
 
 import { useEffect, useRef, useState } from "react";
-import { FaDownload } from "react-icons/fa";
+import { FaDownload, FaTimes } from "react-icons/fa";
 
 type BeforeInstallPromptEvent = Event & {
   prompt: () => Promise<void>;
@@ -23,6 +23,7 @@ export default function InstallAppButton() {
   const [showInstructions, setShowInstructions] = useState(false);
   const [isMobile, setIsMobile] = useState(false);
   const [isAppleMobile, setIsAppleMobile] = useState(false);
+  const [dismissed, setDismissed] = useState(false);
 
   useEffect(() => {
     const isStandalone = window.matchMedia("(display-mode: standalone)").matches ||
@@ -35,6 +36,7 @@ export default function InstallAppButton() {
     const appleMobile = isAppleMobileDevice();
     setIsAppleMobile(appleMobile);
     setIsMobile(appleMobile || isAndroidMobileDevice());
+    setDismissed(window.sessionStorage.getItem("pwa-install-dismissed") === "true");
 
     const onBeforeInstallPrompt = (event: Event) => {
       event.preventDefault();
@@ -73,12 +75,22 @@ export default function InstallAppButton() {
     setShowInstructions(true);
   };
 
-  if (!isMobile && !canInstall) {
+  const dismiss = () => {
+    window.sessionStorage.setItem("pwa-install-dismissed", "true");
+    setDismissed(true);
+  };
+
+  if (dismissed || (!isMobile && !canInstall)) {
     return null;
   }
 
   return (
-    <div className="pwa-install-launcher">
+    <aside className="pwa-install-launcher" aria-label="Install this website as an app">
+      <button type="button" className="pwa-install-close" onClick={dismiss} aria-label="Dismiss install prompt">
+        <FaTimes aria-hidden="true" />
+      </button>
+      <p className="pwa-install-title">Install this app</p>
+      <p className="pwa-install-copy">Save this portfolio to your home screen for faster access.</p>
       <button
         type="button"
         onClick={installApp}
@@ -97,6 +109,6 @@ export default function InstallAppButton() {
           )}
         </p>
       ) : null}
-    </div>
+    </aside>
   );
 }

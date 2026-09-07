@@ -1323,11 +1323,55 @@ a:focus-visible {
 .pwa-install-launcher {
   position: fixed;
   z-index: 55;
-  top: 4.6rem;
-  right: 0.9rem;
+  bottom: 1rem;
+  left: 50%;
   display: grid;
-  width: min(12.5rem, calc(100vw - 1.8rem));
-  gap: 0.45rem;
+  width: min(22rem, calc(100vw - 2rem));
+  gap: 0.6rem;
+  border: 1px solid rgba(34, 211, 238, 0.44);
+  border-radius: var(--radius-lg);
+  background: var(--section);
+  padding: 1rem;
+  box-shadow: var(--shadow-card);
+  transform: translateX(-50%);
+  animation: pwa-install-slide-in 360ms cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+
+.pwa-install-close {
+  display: grid;
+  width: 1.8rem;
+  height: 1.8rem;
+  justify-self: end;
+  place-items: center;
+  margin: -0.35rem -0.35rem -0.1rem 0;
+  border: 0;
+  border-radius: 50%;
+  background: transparent;
+  color: var(--text-secondary);
+}
+
+.pwa-install-close:hover,
+.pwa-install-close:focus-visible {
+  background: rgba(34, 211, 238, 0.1);
+  color: var(--text-primary);
+  outline: none;
+}
+
+.pwa-install-title,
+.pwa-install-copy {
+  margin: 0;
+}
+
+.pwa-install-title {
+  color: var(--text-primary);
+  font-size: 0.95rem;
+  font-weight: 900;
+}
+
+.pwa-install-copy {
+  color: var(--text-secondary);
+  font-size: 0.76rem;
+  line-height: 1.45;
 }
 
 .pwa-install-button {
@@ -1338,7 +1382,7 @@ a:focus-visible {
   gap: 0.5rem;
   border: 1px solid rgba(34, 211, 238, 0.62);
   border-radius: var(--radius-md);
-  background: var(--section);
+  background: rgba(34, 211, 238, 0.1);
   color: var(--text-primary);
   font-size: 0.78rem;
   font-weight: 900;
@@ -1357,9 +1401,27 @@ a:focus-visible {
   box-shadow: var(--shadow-card);
 }
 
+@keyframes pwa-install-slide-in {
+  from {
+    opacity: 0;
+    transform: translate(-50%, 1.5rem);
+  }
+
+  to {
+    opacity: 1;
+    transform: translate(-50%, 0);
+  }
+}
+
 @media (min-width: 1024px) {
   .pwa-install-launcher {
     display: none;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .pwa-install-launcher {
+    animation: none;
   }
 }
 
