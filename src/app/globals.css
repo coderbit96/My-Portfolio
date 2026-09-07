@@ -1781,9 +1781,26 @@ a:focus-visible {
 }
 
 .about-v2 {
+  isolation: isolate;
   background:
     radial-gradient(circle at 12% 20%, rgba(59, 130, 246, 0.08), transparent 28rem),
     linear-gradient(180deg, transparent, rgba(13, 18, 26, 0.42) 48%, transparent);
+}
+
+.about-linked-particles {
+  position: absolute;
+  z-index: 0;
+  inset: 0;
+  overflow: hidden;
+  pointer-events: none;
+  filter: saturate(1.18) brightness(1.08);
+  opacity: 0.58;
+}
+
+.about-linked-particles canvas {
+  display: block;
+  width: 100%;
+  height: 100%;
 }
 
 .about-capability-card {
@@ -1963,6 +1980,7 @@ a:focus-visible {
 }
 
 .skills-v2 {
+  isolation: isolate;
   background:
     radial-gradient(circle at 85% 14%, rgba(34, 211, 238, 0.07), transparent 26rem),
     linear-gradient(180deg, rgba(13, 18, 26, 0.28), transparent 48%);
@@ -1970,6 +1988,22 @@ a:focus-visible {
 
 .skills-v2 .section-shell {
   padding-block: clamp(3.25rem, 4.5vw, 4.5rem);
+}
+
+.skills-webgl-background {
+  position: absolute;
+  z-index: 0;
+  inset: 0;
+  overflow: hidden;
+  pointer-events: none;
+  filter: saturate(1.18) brightness(1.18);
+  opacity: 1;
+}
+
+.skills-webgl-background canvas {
+  display: block;
+  width: 100%;
+  height: 100%;
 }
 
 .skills-heading-row {
@@ -2103,13 +2137,41 @@ a:focus-visible {
 }
 
 .experience-v2 {
+  isolation: isolate;
   background:
     radial-gradient(circle at 84% 12%, rgba(59, 130, 246, 0.1), transparent 28rem),
     linear-gradient(180deg, rgba(13, 18, 26, 0.22), transparent 42%);
 }
 
+.experience-v2::before {
+  position: absolute;
+  z-index: 0;
+  inset: -18% -45%;
+  pointer-events: none;
+  content: "";
+  background: linear-gradient(90deg, transparent 40%, rgba(34, 211, 238, 0.18) 50%, transparent 60%);
+  opacity: 0.36;
+  transform: skewX(-16deg);
+  animation: experience-background-scan 14s ease-in-out infinite;
+}
+
 .experience-v2 .section-shell {
   padding-block: clamp(3.25rem, 4.5vw, 4.5rem);
+}
+
+.experience-webgl-background {
+  position: absolute;
+  z-index: 0;
+  inset: 0;
+  overflow: hidden;
+  pointer-events: none;
+  opacity: 0.58;
+}
+
+.experience-webgl-background canvas {
+  display: block;
+  width: 100%;
+  height: 100%;
 }
 
 .experience-timeline-header {
@@ -2323,6 +2385,7 @@ a:focus-visible {
 }
 
 .education-v2 {
+  isolation: isolate;
   background:
     radial-gradient(circle at 18% 16%, rgba(34, 211, 238, 0.07), transparent 24rem),
     linear-gradient(180deg, transparent, rgba(13, 18, 26, 0.18), transparent);
@@ -2330,6 +2393,40 @@ a:focus-visible {
 
 .education-v2 .section-shell {
   padding-block: clamp(3.25rem, 4.5vw, 4.5rem);
+}
+
+.education-webgl-background {
+  position: absolute;
+  z-index: 0;
+  inset: 0;
+  overflow: hidden;
+  pointer-events: none;
+  filter: saturate(1.28) brightness(1.24);
+  opacity: 1;
+}
+
+.education-webgl-background canvas {
+  display: block;
+  width: 100%;
+  height: 100%;
+}
+
+.contact-v2 {
+  isolation: isolate;
+  background: radial-gradient(circle at 50% 100%, rgba(59, 130, 246, 0.1), transparent 34rem);
+}
+
+.contact-v2::before {
+  position: absolute;
+  z-index: 0;
+  inset: -42%;
+  pointer-events: none;
+  content: "";
+  border: 1px solid rgba(34, 211, 238, 0.2);
+  border-radius: 50%;
+  box-shadow: 0 0 7rem rgba(59, 130, 246, 0.16), inset 0 0 5rem rgba(34, 211, 238, 0.08);
+  opacity: 0.5;
+  animation: contact-background-pulse 9s ease-in-out infinite;
 }
 
 .contact-v2 .section-shell {
@@ -2664,6 +2761,7 @@ a:focus-visible {
   background:
     radial-gradient(circle at 18% 18%, rgba(8, 11, 16, 0.58), transparent 22rem),
     radial-gradient(circle at 50% 50%, rgba(8, 11, 16, 0.18), transparent 30rem);
+  animation: projects-background-breathe 16s ease-in-out infinite alternate;
 }
 
 .project-category-tabs {
@@ -3449,6 +3547,52 @@ a.contact-details__item:focus-visible {
   color: var(--text-primary);
 }
 
+@keyframes experience-background-scan {
+  0%,
+  100% {
+    translate: -22% 0;
+    opacity: 0.08;
+  }
+
+  50% {
+    translate: 22% 0;
+    opacity: 0.38;
+  }
+}
+
+@keyframes contact-background-pulse {
+  0%,
+  100% {
+    transform: scale(0.84);
+    opacity: 0.24;
+  }
+
+  50% {
+    transform: scale(1);
+    opacity: 0.58;
+  }
+}
+
+@keyframes projects-background-breathe {
+  from {
+    transform: scale(1);
+    opacity: 0.84;
+  }
+
+  to {
+    transform: scale(1.07);
+    opacity: 1;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .experience-v2::before,
+  .contact-v2::before,
+  .projects-showcase-section::after {
+    animation: none;
+  }
+}
+
 .portfolio-assistant {
   position: fixed;
   z-index: 45;
@@ -3487,6 +3631,15 @@ a.contact-details__item:focus-visible {
   background:
     radial-gradient(circle at 18% 12%, rgba(59, 130, 246, 0.08), transparent 28rem),
     linear-gradient(180deg, transparent, rgba(216, 224, 234, 0.38), transparent);
+}
+
+:root[data-theme="light"] .skills-webgl-background,
+:root[data-theme="light"] .experience-webgl-background,
+:root[data-theme="light"] .education-webgl-background,
+:root[data-theme="light"] .about-linked-particles {
+  filter: saturate(1.5) contrast(1.18);
+  mix-blend-mode: multiply;
+  opacity: 0.82;
 }
 
 :root[data-theme="light"] .projects-showcase-section {

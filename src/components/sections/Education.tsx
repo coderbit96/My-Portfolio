@@ -10,6 +10,7 @@ import {
 import { useRef, type PointerEvent } from "react";
 import { FaExternalLinkAlt, FaGraduationCap } from "react-icons/fa";
 import Reveal, { revealItem } from "@/components/animations/Reveal";
+import EducationWebGLBackground from "@/components/animations/EducationWebGLBackground";
 import Badge from "@/components/ui/Badge";
 import GradientText from "@/components/ui/GradientText";
 import { education } from "@/data/education";
@@ -162,6 +163,7 @@ export default function Education() {
 
   return (
     <section className="education-v2 relative overflow-hidden">
+      <EducationWebGLBackground reducedMotion={shouldReduceMotion} />
       <div className="section-shell">
         <Reveal stagger amount={0.24} className="mx-auto max-w-3xl text-center">
           <motion.div variants={fadeUp}>

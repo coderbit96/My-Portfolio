@@ -6,6 +6,7 @@ import { FaBriefcase } from "react-icons/fa";
 import Reveal, { revealItem } from "@/components/animations/Reveal";
 import Badge from "@/components/ui/Badge";
 import GradientText from "@/components/ui/GradientText";
+import ExperienceWebGLBackground from "@/components/animations/ExperienceWebGLBackground";
 import { experience } from "@/data/experience";
 import useReducedMotion from "@/hooks/useReducedMotion";
 
@@ -22,6 +23,7 @@ export default function Experience() {
 
   return (
     <section className="experience-v2 relative overflow-hidden">
+      <ExperienceWebGLBackground reducedMotion={shouldReduceMotion} />
       <div className="section-shell">
         <Reveal stagger amount={0.22} className="mx-auto max-w-3xl text-center">
           <motion.div variants={fadeUp}>

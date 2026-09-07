@@ -9,6 +9,7 @@ import {
   FaServer
 } from "react-icons/fa";
 import Reveal, { revealItem } from "@/components/animations/Reveal";
+import AboutLinkedParticlesBackground from "@/components/animations/AboutLinkedParticlesBackground";
 import Badge from "@/components/ui/Badge";
 import Card from "@/components/ui/Card";
 import GradientText from "@/components/ui/GradientText";
@@ -43,6 +44,7 @@ const capabilities = [
 export default function About() {
   return (
     <section className="about-v2 relative overflow-hidden">
+      <AboutLinkedParticlesBackground />
       <div className="section-shell">
         <Reveal amount={0.28} className="relative z-10 mb-8 flex justify-center">
           <Badge>ABOUT ME</Badge>

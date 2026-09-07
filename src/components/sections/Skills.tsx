@@ -4,6 +4,7 @@ import { motion } from "framer-motion";
 import { useCallback, useEffect, useRef, useState, type CSSProperties, type PointerEvent } from "react";
 import { FaVolumeMute, FaVolumeUp } from "react-icons/fa";
 import Reveal, { revealItem } from "@/components/animations/Reveal";
+import SkillsWebGLBackground from "@/components/animations/SkillsWebGLBackground";
 import { skills } from "@/data/skills";
 import Badge from "@/components/ui/Badge";
 import Card from "@/components/ui/Card";
@@ -119,6 +120,7 @@ export default function Skills() {
 
   return (
     <section className="skills-v2 relative overflow-hidden">
+      <SkillsWebGLBackground reducedMotion={shouldReduceMotion} />
       <div className="section-shell">
         <Reveal stagger amount={0.2} className="mx-auto max-w-3xl text-center">
           <motion.div variants={fadeUp}>
