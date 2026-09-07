@@ -291,16 +291,6 @@ body::selection {
   animation: loader-cursor 700ms steps(1, end) infinite;
 }
 
-.premium-loader__hint {
-  margin-top: 0.85rem;
-  color: var(--text-primary);
-  font-size: 0.72rem;
-  font-weight: 750;
-  letter-spacing: 0.16em;
-  opacity: 0.58;
-  text-transform: uppercase;
-}
-
 html[data-portal-entry] .hero-v2 {
   transition: filter 1250ms cubic-bezier(0.22, 1, 0.36, 1), transform 1250ms cubic-bezier(0.22, 1, 0.36, 1);
 }
@@ -1175,7 +1165,7 @@ a:focus-visible {
   align-items: center;
   border-radius: var(--radius-md);
   padding-inline: 0.95rem;
-  color: var(--text-secondary);
+  color: #f8fafc;
   font-size: 0.9rem;
   font-weight: 700;
   letter-spacing: -0.01em;
@@ -1978,6 +1968,10 @@ a:focus-visible {
     linear-gradient(180deg, rgba(13, 18, 26, 0.28), transparent 48%);
 }
 
+.skills-v2 .section-shell {
+  padding-block: clamp(3.25rem, 4.5vw, 4.5rem);
+}
+
 .skills-heading-row {
   display: flex;
   flex-wrap: wrap;
@@ -2112,6 +2106,10 @@ a:focus-visible {
   background:
     radial-gradient(circle at 84% 12%, rgba(59, 130, 246, 0.1), transparent 28rem),
     linear-gradient(180deg, rgba(13, 18, 26, 0.22), transparent 42%);
+}
+
+.experience-v2 .section-shell {
+  padding-block: clamp(3.25rem, 4.5vw, 4.5rem);
 }
 
 .experience-timeline-header {
@@ -2328,6 +2326,14 @@ a:focus-visible {
   background:
     radial-gradient(circle at 18% 16%, rgba(34, 211, 238, 0.07), transparent 24rem),
     linear-gradient(180deg, transparent, rgba(13, 18, 26, 0.18), transparent);
+}
+
+.education-v2 .section-shell {
+  padding-block: clamp(3.25rem, 4.5vw, 4.5rem);
+}
+
+.contact-v2 .section-shell {
+  padding-block: clamp(3.25rem, 4.5vw, 4.5rem);
 }
 
 .education-grid {

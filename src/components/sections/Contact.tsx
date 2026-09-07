@@ -41,7 +41,7 @@ const contactDetails = [
 
 export default function Contact() {
   return (
-    <section className="relative">
+    <section className="contact-v2 relative">
       <div className="section-shell">
         <SectionHeading
           eyebrow="Contact"

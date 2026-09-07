@@ -173,7 +173,6 @@ export default function PremiumLoader() {
               {displayName}
               <span className="premium-loader__cursor" aria-hidden="true" />
             </motion.p>
-            <span className="premium-loader__hint">Loading {progress}%</span>
           </motion.div>
         </motion.div>
       ) : null}
