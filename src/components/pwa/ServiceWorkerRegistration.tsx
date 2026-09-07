@@ -9,19 +9,11 @@ export default function ServiceWorkerRegistration() {
       return;
     }
 
-    const registerServiceWorker = () => {
-      navigator.serviceWorker.register("/sw.js", { scope: "/" }).catch((error: unknown) => {
+    navigator.serviceWorker.register("/sw.js", { scope: "/" }).then((registration) => {
+      void registration.update();
+    }).catch((error: unknown) => {
         console.warn("Service worker registration failed.", error);
-      });
-    };
-
-    if (document.readyState === "complete") {
-      registerServiceWorker();
-      return;
-    }
-
-    window.addEventListener("load", registerServiceWorker, { once: true });
-    return () => window.removeEventListener("load", registerServiceWorker);
+    });
   }, []);
 
   return null;

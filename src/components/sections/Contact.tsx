@@ -48,11 +48,11 @@ export default function Contact() {
           title="Have an Idea? Let's Build It."
           description="Open to job opportunities, collaboration, freelance projects, and technical conversations — share a few details and I'll get back to you soon."
         />
-        <div className="mx-auto max-w-4xl">
-          <Reveal amount={0.25} className="glass rounded-[8px] p-5 sm:p-7">
+        <div className="mx-auto max-w-2xl">
+          <Reveal amount={0.25} className="glass rounded-[8px] p-3 sm:p-4">
             <ContactForm />
 
-            <div className="contact-details mt-8 grid gap-3 border-t border-white/10 pt-6 sm:grid-cols-2">
+            <div className="contact-details mt-6 grid gap-3 border-t border-white/10 pt-5 sm:grid-cols-2">
               {contactDetails.map((detail) => {
                 const Icon = detail.icon;
                 const content = (

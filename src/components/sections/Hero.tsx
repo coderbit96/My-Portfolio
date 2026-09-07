@@ -151,6 +151,7 @@ export default function Hero({ nextSectionRef }: HeroProps) {
 
           <motion.h1
             variants={fadeUp}
+            data-hero-entry="heading"
             className="mt-7 max-w-4xl font-display text-[clamp(2.3rem,5.25vw,4.5rem)] font-black leading-[0.95] tracking-[-0.055em] text-white"
           >
             <span className="inline-block whitespace-nowrap">I Create Modern</span>{" "}
@@ -159,6 +160,7 @@ export default function Hero({ nextSectionRef }: HeroProps) {
 
           <motion.p
             variants={fadeUp}
+            data-hero-entry="subtitle"
             className="hero-description mt-7 max-w-2xl text-base leading-8 text-slate-300 sm:text-lg"
           >
             I design and develop modern web applications with Next.js, React,
@@ -168,6 +170,7 @@ export default function Hero({ nextSectionRef }: HeroProps) {
 
           <motion.div
             variants={fadeUp}
+            data-hero-entry="actions"
             className="mt-9 flex flex-col gap-3 sm:flex-row sm:items-center"
           >
             <Button href="#contact" size="lg" className="group">
@@ -178,6 +181,7 @@ export default function Hero({ nextSectionRef }: HeroProps) {
 
           <motion.div
             variants={fadeUp}
+            data-hero-entry="links"
             className="mt-8 flex flex-col gap-5 text-sm text-slate-300 sm:flex-row sm:items-center sm:gap-7"
           >
             <div className="inline-flex items-center gap-2 font-semibold text-slate-200">
@@ -211,6 +215,7 @@ export default function Hero({ nextSectionRef }: HeroProps) {
         <motion.div
           ref={heroVisualRef}
           data-cinematic-hero-visual
+          data-hero-entry="tech"
           initial={shouldReduceMotion ? false : { opacity: 0, y: 28, scale: 0.96 }}
           animate={{ opacity: 1, y: 0, scale: 1 }}
           transition={{ delay: 0.18, duration: 0.8, ease: [0.22, 1, 0.36, 1] }}

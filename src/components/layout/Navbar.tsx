@@ -67,7 +67,7 @@ export default function Navbar() {
       initial={{ y: -16, opacity: 0 }}
       animate={{ y: 0, opacity: 1 }}
       transition={{ duration: 0.35, ease: [0.22, 1, 0.36, 1] }}
-      className="fixed inset-x-0 top-0 z-50 w-full px-3 pt-3 sm:px-5"
+      className="fixed inset-x-0 top-0 z-50 w-full px-3 sm:px-5"
     >
       <nav
         data-scrolled={scrolled}
@@ -146,6 +146,8 @@ export default function Navbar() {
         </button>
       </nav>
 
+      <InstallAppButton />
+
       <AnimatePresence>
         {open ? (
           <motion.div
@@ -178,8 +180,6 @@ export default function Navbar() {
                 );
               })}
             </div>
-
-            <InstallAppButton />
             <a
               href={resumeHref}
               download="Joydip-Ghosh-Resume.pdf"

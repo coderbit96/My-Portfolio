@@ -22,6 +22,7 @@ export default function HeroBirdsBackground() {
   const effectRef = useRef<{ destroy: () => void } | null>(null);
   const shouldReduceMotion = useReducedMotion();
   const [isLightTheme, setIsLightTheme] = useState(false);
+  const [portalReady, setPortalReady] = useState(false);
 
   useEffect(() => {
     const root = document.documentElement;
@@ -35,7 +36,14 @@ export default function HeroBirdsBackground() {
   }, []);
 
   useEffect(() => {
-    if (shouldReduceMotion) return undefined;
+    const startBirds = () => setPortalReady(true);
+    window.addEventListener("portfolio:hero-ready", startBirds, { once: true });
+
+    return () => window.removeEventListener("portfolio:hero-ready", startBirds);
+  }, []);
+
+  useEffect(() => {
+    if (shouldReduceMotion || !portalReady) return undefined;
 
     const container = containerRef.current;
     if (!container) return undefined;
@@ -90,7 +98,7 @@ export default function HeroBirdsBackground() {
       effectRef.current?.destroy();
       effectRef.current = null;
     };
-  }, [isLightTheme, shouldReduceMotion]);
+  }, [isLightTheme, portalReady, shouldReduceMotion]);
 
   if (shouldReduceMotion) return null;
 

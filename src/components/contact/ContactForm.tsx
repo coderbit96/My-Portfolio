@@ -64,8 +64,8 @@ export default function ContactForm() {
   });
 
   return (
-    <form onSubmit={onSubmit} noValidate className="grid gap-4">
-      <div className="grid gap-4 sm:grid-cols-2">
+    <form onSubmit={onSubmit} noValidate className="grid gap-3">
+      <div className="grid gap-3 sm:grid-cols-2">
         <label className="grid gap-2 text-sm font-semibold text-slate-200">
           Name
           <input
@@ -74,7 +74,7 @@ export default function ContactForm() {
             autoComplete="name"
             aria-invalid={errors.name ? "true" : "false"}
             aria-describedby={errors.name ? "contact-name-error" : undefined}
-            className="w-full rounded-[8px] border border-white/10 bg-white/[0.06] px-4 py-3 text-white outline-none transition focus:border-cyanGlow/70 focus:bg-white/[0.09]"
+            className="w-full rounded-[8px] border border-white/10 bg-white/[0.06] px-3 py-2.5 text-white outline-none transition focus:border-cyanGlow/70 focus:bg-white/[0.09]"
           />
           {errors.name ? (
             <span id="contact-name-error" role="alert" className="text-xs font-medium text-roseGlow">
@@ -90,7 +90,7 @@ export default function ContactForm() {
             autoComplete="email"
             aria-invalid={errors.email ? "true" : "false"}
             aria-describedby={errors.email ? "contact-email-error" : undefined}
-            className="w-full rounded-[8px] border border-white/10 bg-white/[0.06] px-4 py-3 text-white outline-none transition focus:border-cyanGlow/70 focus:bg-white/[0.09]"
+            className="w-full rounded-[8px] border border-white/10 bg-white/[0.06] px-3 py-2.5 text-white outline-none transition focus:border-cyanGlow/70 focus:bg-white/[0.09]"
           />
           {errors.email ? (
             <span id="contact-email-error" role="alert" className="text-xs font-medium text-roseGlow">
@@ -107,7 +107,7 @@ export default function ContactForm() {
           type="text"
           aria-invalid={errors.subject ? "true" : "false"}
           aria-describedby={errors.subject ? "contact-subject-error" : undefined}
-          className="w-full rounded-[8px] border border-white/10 bg-white/[0.06] px-4 py-3 text-white outline-none transition focus:border-cyanGlow/70 focus:bg-white/[0.09]"
+          className="w-full rounded-[8px] border border-white/10 bg-white/[0.06] px-3 py-2.5 text-white outline-none transition focus:border-cyanGlow/70 focus:bg-white/[0.09]"
         />
         {errors.subject ? (
           <span id="contact-subject-error" role="alert" className="text-xs font-medium text-roseGlow">
@@ -120,10 +120,10 @@ export default function ContactForm() {
         Message
         <textarea
           {...register("message")}
-          rows={6}
+          rows={3}
           aria-invalid={errors.message ? "true" : "false"}
           aria-describedby={errors.message ? "contact-message-error" : undefined}
-          className="w-full resize-none rounded-[8px] border border-white/10 bg-white/[0.06] px-4 py-3 text-white outline-none transition focus:border-cyanGlow/70 focus:bg-white/[0.09]"
+          className="w-full resize-none rounded-[8px] border border-white/10 bg-white/[0.06] px-3 py-2.5 text-white outline-none transition focus:border-cyanGlow/70 focus:bg-white/[0.09]"
         />
         {errors.message ? (
           <span id="contact-message-error" role="alert" className="text-xs font-medium text-roseGlow">

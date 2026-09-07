@@ -13,10 +13,16 @@ function isAppleMobileDevice() {
     (navigator.platform === "MacIntel" && navigator.maxTouchPoints > 1);
 }
 
+function isAndroidMobileDevice() {
+  return /Android/i.test(navigator.userAgent);
+}
+
 export default function InstallAppButton() {
   const deferredPrompt = useRef<BeforeInstallPromptEvent | null>(null);
   const [canInstall, setCanInstall] = useState(false);
-  const [showIosInstructions, setShowIosInstructions] = useState(false);
+  const [showInstructions, setShowInstructions] = useState(false);
+  const [isMobile, setIsMobile] = useState(false);
+  const [isAppleMobile, setIsAppleMobile] = useState(false);
 
   useEffect(() => {
     const isStandalone = window.matchMedia("(display-mode: standalone)").matches ||
@@ -26,6 +32,10 @@ export default function InstallAppButton() {
       return;
     }
 
+    const appleMobile = isAppleMobileDevice();
+    setIsAppleMobile(appleMobile);
+    setIsMobile(appleMobile || isAndroidMobileDevice());
+
     const onBeforeInstallPrompt = (event: Event) => {
       event.preventDefault();
       deferredPrompt.current = event as BeforeInstallPromptEvent;
@@ -34,10 +44,10 @@ export default function InstallAppButton() {
     const onAppInstalled = () => {
       deferredPrompt.current = null;
       setCanInstall(false);
-      setShowIosInstructions(false);
+      setShowInstructions(false);
     };
 
-    if (isAppleMobileDevice()) {
+    if (appleMobile) {
       setCanInstall(true);
     }
 
@@ -60,27 +70,31 @@ export default function InstallAppButton() {
       return;
     }
 
-    setShowIosInstructions(true);
+    setShowInstructions(true);
   };
 
-  if (!canInstall) {
+  if (!isMobile && !canInstall) {
     return null;
   }
 
   return (
-    <div className="grid gap-2">
+    <div className="pwa-install-launcher">
       <button
         type="button"
         onClick={installApp}
-        className="mobile-navbar-cv"
-        aria-expanded={showIosInstructions}
+        className="pwa-install-button"
+        aria-expanded={showInstructions}
       >
         <FaDownload aria-hidden="true" />
         Install app
       </button>
-      {showIosInstructions ? (
-        <p className="rounded-[8px] border border-brandBlue/35 bg-brandBlue/10 px-3 py-2 text-xs leading-5 text-slate-300">
-          In Safari, tap Share, then choose <strong>Add to Home Screen</strong>.
+      {showInstructions ? (
+        <p className="pwa-install-instructions">
+          {isAppleMobile ? (
+            <>In Safari, tap Share, then choose <strong>Add to Home Screen</strong>.</>
+          ) : (
+            <>If this page opened inside another app, tap <strong>⋮</strong> and choose <strong>Open in Chrome</strong> first. Then use Chrome&apos;s <strong>Install app</strong> or <strong>Add to Home screen</strong> option.</>
+          )}
         </p>
       ) : null}
     </div>
