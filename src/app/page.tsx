@@ -3,24 +3,24 @@ import PortfolioPage from "@/components/layout/PortfolioPage";
 
 export const metadata: Metadata = {
   title: {
-    absolute: "Joydip Ghosh | AI Full Stack Developer, Web Developer & Website Developer"
+    absolute: "Joydip Ghosh | Full Stack Developer in Kolkata, India"
   },
   description:
-    "Joydip Ghosh is an AI Full Stack Developer, Web Developer and Website Developer in Kolkata, India, building React, Next.js, MERN and custom web applications.",
+    "Joydip Ghosh is a Full Stack Developer in Kolkata, India, building AI-enabled web applications with React, Next.js, TypeScript, Node.js and MongoDB.",
   alternates: {
     canonical: "/"
   },
   openGraph: {
-    title: "Joydip Ghosh | AI Full Stack Developer, Web Developer & Website Developer",
+    title: "Joydip Ghosh | Full Stack Developer in Kolkata, India",
     description:
-      "Portfolio of Joydip Ghosh, an AI Full Stack Developer in Kolkata building React, Next.js, MERN and custom website experiences.",
+      "Portfolio of Joydip Ghosh, a Full Stack Developer in Kolkata building AI-enabled applications with React, Next.js and the MERN stack.",
     url: "/",
     type: "profile"
   },
   twitter: {
     card: "summary_large_image",
-    title: "Joydip Ghosh | AI Full Stack Developer",
-    description: "AI Full Stack Developer, Web Developer and Website Developer in Kolkata, India."
+    title: "Joydip Ghosh | Full Stack Developer in Kolkata, India",
+    description: "Full Stack Developer building AI-enabled web applications with React, Next.js and the MERN stack."
   }
 };
 

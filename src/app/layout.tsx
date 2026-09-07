@@ -42,7 +42,7 @@ export const metadata: Metadata = {
         width: 1200,
         height: 630,
         type: "image/png",
-        alt: "Joydip Ghosh — AI Full Stack Developer"
+        alt: "Joydip Ghosh — Full Stack Developer"
       }
     ]
   },
@@ -55,7 +55,7 @@ export const metadata: Metadata = {
         url: "/opengraph-image",
         width: 1200,
         height: 630,
-        alt: "Joydip Ghosh — AI Full Stack Developer"
+        alt: "Joydip Ghosh — Full Stack Developer"
       }
     ]
   },
@@ -126,8 +126,11 @@ const structuredData = {
       email: `mailto:${siteConfig.email}`,
       image: `${siteConfig.url}/images/joydip-ghosh-profile.png`,
       description:
-        "Joydip Ghosh is an AI Full Stack Developer, Web Developer and Website Developer based in Kolkata, India.",
-      jobTitle: "AI Full Stack Developer and Website Developer",
+        "Joydip Ghosh is a Full Stack Developer in Kolkata, India, specialising in AI-enabled web applications.",
+      jobTitle: "Full Stack Developer",
+      mainEntityOfPage: {
+        "@id": `${siteConfig.url}/#profile`
+      },
       address: {
         "@type": "PostalAddress",
         addressLocality: "Kolkata",
@@ -143,7 +146,7 @@ const structuredData = {
       },
       hasOccupation: {
         "@type": "Occupation",
-        name: "AI Full Stack Developer",
+        name: "Full Stack Developer",
         occupationLocation: {
           "@type": "City",
           name: "Kolkata, India"
@@ -176,6 +179,9 @@ const structuredData = {
       url: siteConfig.url,
       description: siteConfig.description,
       inLanguage: "en",
+      mainEntity: {
+        "@id": `${siteConfig.url}/#person`
+      },
       publisher: {
         "@id": `${siteConfig.url}/#person`
       }
@@ -184,12 +190,15 @@ const structuredData = {
       "@type": "ProfilePage",
       "@id": `${siteConfig.url}/#profile`,
       url: siteConfig.url,
-      name: "Joydip Ghosh | AI Full Stack Developer",
+      name: "Joydip Ghosh | Full Stack Developer",
       mainEntity: {
         "@id": `${siteConfig.url}/#person`
       },
       isPartOf: {
         "@id": `${siteConfig.url}/#website`
+      },
+      about: {
+        "@id": `${siteConfig.url}/#person`
       }
     },
     {

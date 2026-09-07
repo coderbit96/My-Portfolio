@@ -2,9 +2,9 @@ export const siteConfig = {
   name: "Joydip Ghosh Portfolio",
   domain: "automade.in",
   url: "https://www.automade.in",
-  title: "Joydip Ghosh | AI Full Stack Developer, Web Developer & Website Developer",
+  title: "Joydip Ghosh | Full Stack Developer in Kolkata, India",
   description:
-    "Joydip Ghosh is an AI Full Stack Developer, Web Developer and Website Developer in Kolkata, India. Explore React, Next.js, MERN and custom website development projects.",
+    "Joydip Ghosh is a Full Stack Developer in Kolkata, India, specialising in AI-enabled web applications with React, Next.js, TypeScript, Node.js and MongoDB.",
   author: "Joydip Ghosh",
   email: "joydip.work.mail@gmail.com",
   github: "https://github.com/coderbit96",
@@ -21,10 +21,10 @@ export const siteConfig = {
   keywords: [
     "Joydip Ghosh",
     "Joydip Ghosh Developer",
+    "Joydip Ghosh Full Stack Developer",
     "Joydip Ghosh AI Full Stack Developer",
     "Joydip Ghosh Website Developer",
     "Joydip Ghosh Web Developer",
-    "AI Full Stack Developer",
     "AI Full Stack Developer",
     "AI Full Stack Developer Kolkata",
     "AI Full Stack Developer India",
